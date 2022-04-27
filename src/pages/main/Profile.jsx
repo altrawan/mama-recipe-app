@@ -83,7 +83,7 @@ function Profile({ me = false }) {
           text: res.message,
           icon: 'success'
         }).then(() => {
-          window.location.reload();
+          dispatch(getUserById(decoded.id));
         });
       })
       .catch((err) => {

@@ -41,7 +41,7 @@ function ForgotPassword() {
         localStorage.setItem('token', res.data.token);
         swal({
           title: 'Success!',
-          text: res.data.message,
+          text: res.message,
           icon: 'success'
         }).then(() => {
           navigate('/');

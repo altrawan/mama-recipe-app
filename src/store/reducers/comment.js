@@ -30,7 +30,7 @@ export default function comment(state = initialState, action) {
         ...state,
         isError: true,
         isLoading: true,
-        message: action.payload.data.message
+        message: action.payload.response.data.message
       };
     }
     default:

@@ -6,7 +6,7 @@ import { Container, Form } from 'reactstrap';
 import swal from 'sweetalert';
 import jwt_decode from 'jwt-decode';
 import toastr from '../../utils/toastr';
-import { getRecipeById, createRecipe, updateRecipe } from '../../store/actions/recipe';
+import { getRecipeById, updateRecipe } from '../../store/actions/recipe';
 
 import Navbar from '../../components/Navbar';
 import File from '../../components/Recipe/File';
@@ -45,32 +45,26 @@ const Button = styled.button`
   }
 `;
 
-function AddRecipe({ edit }) {
+const EditRecipe = () => {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const params = useParams();
   const hiddenFileInput = useRef(null);
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const recipe = useSelector((state) => state.recipe);
 
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [video, setVideo] = useState('');
 
   useEffect(() => {
-    document.title = edit ? 'Mama Recipe. - Edit Recipe Page' : 'Mama Recipe. - Add Recipe Page';
-
-    if (edit) {
-      dispatch(getRecipeById(params.id));
-      setTitle(recipe.data.title);
-      setIngredients(recipe.data.ingredients);
-      setVideo(recipe.data.video);
-      recipe.data.image
-        ? (document.getElementById('customBtn').innerHTML = recipe.data.image)
-        : (document.getElementById('customBtn').innerHTML = 'Add Photo');
-    }
+    document.title = 'Mama Recipe. - Edit Recipe Page';
+    dispatch(getRecipeById(params.id));
+    setTitle(recipe.data.title);
+    setIngredients(recipe.data.ingredients);
+    setVideo(recipe.data.video);
   }, []);
 
   const handleClick = () => {
@@ -79,7 +73,7 @@ function AddRecipe({ edit }) {
 
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
-    if (fileUploaded || !edit) {
+    if (fileUploaded) {
       document.getElementById('customBtn').innerHTML = fileUploaded.name;
       setImage(fileUploaded);
     } else {
@@ -100,51 +94,27 @@ function AddRecipe({ edit }) {
     formData.append('video', video);
     formData.append('user_id', decoded.id);
 
-    if (edit) {
-      updateRecipe(formData, params.id)
-        .then((res) => {
-          swal({
-            title: 'Success!',
-            text: res.message,
-            icon: 'success'
-          }).then(() => {
-            navigate('/profile');
-          });
-        })
-        .catch((err) => {
-          if (err.response.status === 422) {
-            const error = err.response.data.errors;
-            error.map((e) => toastr(e));
-          } else {
-            toastr(err.response.data.message);
-          }
-        })
-        .finally(() => {
-          setLoading(false);
+    updateRecipe(formData, params.id)
+      .then((res) => {
+        swal({
+          title: 'Success!',
+          text: res.message,
+          icon: 'success'
+        }).then(() => {
+          navigate('/profile');
         });
-    } else {
-      createRecipe(formData)
-        .then((res) => {
-          swal({
-            title: 'Success!',
-            text: res.message,
-            icon: 'success'
-          }).then(() => {
-            navigate('/profile');
-          });
-        })
-        .catch((err) => {
-          if (err.response.status === 422) {
-            const error = err.response.data.errors;
-            error.map((e) => toastr(e));
-          } else {
-            toastr(err.response.data.message);
-          }
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
+      })
+      .catch((err) => {
+        if (err.response.status === 422) {
+          const error = err.response.data.errors;
+          error.map((e) => toastr(e));
+        } else {
+          toastr(err.response.data.message);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -153,15 +123,16 @@ function AddRecipe({ edit }) {
 
       <Container fluid>
         <Add>
+          <div>{title}</div>
           <Form method="post" encType="multipart/form-data" onSubmit={onSubmit}>
             <File
               handleChange={handleChange}
               hiddenFileInput={hiddenFileInput}
               handleClick={handleClick}
             />
-            <Text name="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Textarea value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
-            <Text name="Video" value={video} onChange={(e) => setVideo(e.target.value)} />
+            <Text name="Title" value={title || ''} onChange={(e) => setTitle(e.target.value)} />
+            <Textarea value={ingredients || ''} onChange={(e) => setIngredients(e.target.value)} />
+            <Text name="Video" value={video || ''} onChange={(e) => setVideo(e.target.value)} />
             <div className="d-flex justify-content-center align-items-center pl-5">
               {loading ? (
                 <Button type="submit" disabled>
@@ -172,7 +143,7 @@ function AddRecipe({ edit }) {
                   />
                 </Button>
               ) : (
-                <Button type="submit">{edit ? 'Update' : 'Post'}</Button>
+                <Button type="submit">Update</Button>
               )}
             </div>
           </Form>
@@ -182,6 +153,6 @@ function AddRecipe({ edit }) {
       <Footer />
     </>
   );
-}
+};
 
-export default AddRecipe;
+export default EditRecipe;

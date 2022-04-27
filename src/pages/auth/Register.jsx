@@ -60,7 +60,7 @@ function Register() {
         setLoading(false);
         swal({
           title: 'Success!',
-          text: res.data.message,
+          text: res.message,
           icon: 'success'
         }).then(() => {
           navigate('/login');

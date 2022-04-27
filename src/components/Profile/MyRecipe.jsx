@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { TabPane, Row, Col, Card, CardBody } from 'reactstrap';
 import swal from 'sweetalert';
 import { deleteRecipe } from '../../store/actions/recipe';
+import { useDispatch } from 'react-redux';
+import { getRecipeByUser } from '../../store/actions/recipe';
 
 const Image = styled.img`
   width: 270px;
@@ -36,6 +38,7 @@ const Option = styled.div`
 
 function MyRecipe({ me, myRecipe }) {
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (myRecipe) {
@@ -56,10 +59,10 @@ function MyRecipe({ me, myRecipe }) {
           .then((res) => {
             swal({
               title: 'Success!',
-              text: res.data.message,
+              text: res.message,
               icon: 'success'
             });
-            window.location.reload();
+            dispatch(getRecipeByUser(id));
           })
           .catch((err) => {
             swal({

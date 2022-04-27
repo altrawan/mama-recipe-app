@@ -103,7 +103,6 @@ function Search() {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
   const recipes = useSelector((state) => state.recipe);
 
   const [limit] = useState(6);
@@ -128,7 +127,6 @@ function Search() {
     if (querySort) {
       dispatch(getSortRecipe(querySort));
     }
-    setLoading(false);
   }, []);
 
   const handleSort = (event) => {
@@ -188,8 +186,10 @@ function Search() {
       <Latest>
         {/* <TitleSection className="mb-4 mb-md-5">Popular Recipe</TitleSection> */}
         <List>
-          {recipes.isLoading || loading ? (
+          {recipes.isLoading ? (
             <ContentLoader />
+          ) : recipes.isError ? (
+            <h1>{recipes.message}</h1>
           ) : (
             recipes.data.map((item) => (
               <div className="d-flex justify-content-center" key={item.id}>

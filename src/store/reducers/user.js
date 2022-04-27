@@ -28,7 +28,7 @@ export default function recipe(state = initialState, action) {
         ...state,
         isError: true,
         isLoading: false,
-        message: action.payload.data.message
+        message: action.payload.response.data.message
       };
     }
     default:

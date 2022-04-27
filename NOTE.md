@@ -1,7 +1,5 @@
-1. Cara Menangkap 2 dispatch dari satu action masih error
-   example: detail video & resep
-2. Linter muncul pesan error padahal sudah instal prettier
-   fix linter tidak jalan
+1. Perbaikan Edit Recipe
+2. 
 
 Fixing Redux
 

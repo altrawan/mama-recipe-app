@@ -51,8 +51,8 @@ function Login() {
 
         swal({
           title: 'Success!',
-          text: res.data.message
-          // icon: "success"
+          text: res.message,
+          icon: 'success'
         });
         setLoading(false);
       })

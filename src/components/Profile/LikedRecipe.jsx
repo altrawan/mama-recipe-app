@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { TabPane, Row, Col, Card, CardBody } from 'reactstrap';
 import swal from 'sweetalert';
 import { deleteLikedRecipe } from '../../store/actions/likedRecipe';
+import { useDispatch } from 'react-redux';
+import { getListLikedRecipe } from '../../store/actions/likedRecipe';
 
 const Image = styled.img`
   width: 270px;
@@ -36,6 +38,7 @@ const Option = styled.div`
 
 function LikedRecipe({ me, likedRecipe }) {
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (likedRecipe) {
@@ -56,10 +59,10 @@ function LikedRecipe({ me, likedRecipe }) {
           .then((res) => {
             swal({
               title: 'Success!',
-              text: res.data.message,
+              text: res.message,
               icon: 'success'
             });
-            window.location.reload();
+            dispatch(getListLikedRecipe(id));
           })
           .catch((err) => {
             swal({

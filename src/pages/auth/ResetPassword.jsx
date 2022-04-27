@@ -39,7 +39,7 @@ function ChangePassword() {
       .then((res) => {
         swal({
           title: 'Success!',
-          text: res.data.message,
+          text: res.message,
           icon: 'success'
         }).then(() => {
           navigate('/profile');

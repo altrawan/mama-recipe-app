@@ -5,6 +5,8 @@ import { Form, FormGroup } from 'reactstrap';
 import jwt_decode from 'jwt-decode';
 import toastr from '../../utils/toastr';
 import { createComment } from '../../store/actions/comment';
+import { useDispatch } from 'react-redux';
+import { getListComment } from '../../store/actions/comment';
 
 const Section = styled.section`
   margin: 0 auto;
@@ -75,6 +77,7 @@ const Item = styled.h3`
 function Comment({ loading, comments }) {
   const token = localStorage.getItem('token');
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
   const input = useRef(null);
@@ -94,7 +97,7 @@ function Comment({ loading, comments }) {
     createComment(body)
       .then(() => {
         input.current.value = '';
-        window.location.reload();
+        dispatch(getListComment(id));
       })
       .catch((err) => {
         if (err.response.status === 422) {

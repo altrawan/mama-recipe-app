@@ -38,8 +38,6 @@ function DetailVideo() {
 
     dispatch(getRecipeById(id));
     dispatch(getListRecipe(1, 3, 'DESC'));
-    console.log(list);
-    console.log(recipe);
   }, []);
 
   return (

@@ -30,22 +30,22 @@ export default function recipe(state = initialState, action) {
         ...state,
         isError: true,
         isLoading: false,
-        message: action.payload.data.message
+        message: action.payload.response.data.message
       };
     }
     case 'SEARCH_RECIPE_PENDING': {
       return {
         ...state,
-        isLoading: false,
         isError: false,
+        isLoading: true,
         message: ''
       };
     }
     case 'SEARCH_RECIPE_FULFILLED': {
       return {
         ...state,
-        isLoading: false,
         isError: false,
+        isLoading: false,
         data: action.payload.data.data,
         message: action.payload.data.message
       };
@@ -53,24 +53,24 @@ export default function recipe(state = initialState, action) {
     case 'SEARCH_RECIPE_REJECTED': {
       return {
         ...state,
+        isError: true,
         isLoading: false,
-        isError: false,
-        message: action.payload.data.message
+        message: action.payload.response.data.message
       };
     }
     case 'SORT_RECIPE_PENDING': {
       return {
         ...state,
-        isLoading: false,
         isError: false,
+        isLoading: true,
         message: ''
       };
     }
     case 'SORT_RECIPE_FULFILLED': {
       return {
         ...state,
-        isLoading: false,
         isError: false,
+        isLoading: false,
         data: action.payload.data.data,
         message: action.payload.data.message
       };
@@ -78,9 +78,9 @@ export default function recipe(state = initialState, action) {
     case 'SORT_RECIPE_REJECTED': {
       return {
         ...state,
+        isError: true,
         isLoading: false,
-        isError: false,
-        message: action.payload.data.message
+        message: action.payload.response.data.message
       };
     }
     case 'GET_DETAIL_RECIPE_PENDING':
@@ -102,8 +102,8 @@ export default function recipe(state = initialState, action) {
       return {
         ...state,
         isError: true,
-        isLoading: true,
-        message: action.payload.data.message
+        isLoading: false,
+        message: action.payload.response.data.message
       };
     }
     case 'GET_MY_RECIPE_PENDING':
@@ -125,8 +125,8 @@ export default function recipe(state = initialState, action) {
       return {
         ...state,
         isError: true,
-        isLoading: true,
-        message: action.payload.data.message
+        isLoading: false,
+        message: action.payload.response.data.message
       };
     }
     default:
