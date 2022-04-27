@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import { deleteSavedRecipe } from '../../store/actions/savedRecipe';
 import { useDispatch } from 'react-redux';
 import { getListSavedRecipe } from '../../store/actions/savedRecipe';
+import jwt_decode from 'jwt-decode';
 
 const Image = styled.img`
   width: 270px;
@@ -37,6 +38,8 @@ const Option = styled.div`
 `;
 
 function SavedRecipe({ me, savedRecipe }) {
+  const token = localStorage.getItem('token');
+  const decoded = jwt_decode(token);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
@@ -62,7 +65,7 @@ function SavedRecipe({ me, savedRecipe }) {
               text: res.message,
               icon: 'success'
             });
-            dispatch(getListSavedRecipe(id));
+            dispatch(getListSavedRecipe(decoded.id));
           })
           .catch((err) => {
             swal({

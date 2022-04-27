@@ -13,6 +13,7 @@ import Profile from '../pages/main/Profile';
 import ChangePassword from '../pages/main/ChangePassword';
 import EditProfile from '../pages/main/EditProfile';
 import Add from '../pages/main/AddRecipe';
+// import Edit from '../pages/main/EditRecipe';
 import Detail from '../pages/main/DetailRecipe';
 import Video from '../pages/main/DetailVideo';
 import NotFound from '../pages/main/NotFound';

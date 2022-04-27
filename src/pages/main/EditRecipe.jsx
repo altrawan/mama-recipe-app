@@ -53,7 +53,7 @@ const EditRecipe = () => {
   const dispatch = useDispatch();
   const recipe = useSelector((state) => state.recipe);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
   const [ingredients, setIngredients] = useState('');
@@ -65,7 +65,11 @@ const EditRecipe = () => {
     setTitle(recipe.data.title);
     setIngredients(recipe.data.ingredients);
     setVideo(recipe.data.video);
-  }, []);
+    recipe.data.image
+      ? (document.getElementById('customBtn').innerHTML = recipe.data.image)
+      : (document.getElementById('customBtn').innerHTML = 'Add Photo');
+    setLoading(false);
+  }, [params.id]);
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -123,30 +127,36 @@ const EditRecipe = () => {
 
       <Container fluid>
         <Add>
-          <div>{title}</div>
-          <Form method="post" encType="multipart/form-data" onSubmit={onSubmit}>
-            <File
-              handleChange={handleChange}
-              hiddenFileInput={hiddenFileInput}
-              handleClick={handleClick}
-            />
-            <Text name="Title" value={title || ''} onChange={(e) => setTitle(e.target.value)} />
-            <Textarea value={ingredients || ''} onChange={(e) => setIngredients(e.target.value)} />
-            <Text name="Video" value={video || ''} onChange={(e) => setVideo(e.target.value)} />
-            <div className="d-flex justify-content-center align-items-center pl-5">
-              {loading ? (
-                <Button type="submit" disabled>
-                  <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                </Button>
-              ) : (
-                <Button type="submit">Update</Button>
-              )}
-            </div>
-          </Form>
+          {loading ? (
+            <div>Loading</div>
+          ) : (
+            <Form method="post" encType="multipart/form-data" onSubmit={onSubmit}>
+              <File
+                handleChange={handleChange}
+                hiddenFileInput={hiddenFileInput}
+                handleClick={handleClick}
+              />
+              <Text name="Title" value={title || ''} onChange={(e) => setTitle(e.target.value)} />
+              <Textarea
+                value={ingredients || ''}
+                onChange={(e) => setIngredients(e.target.value)}
+              />
+              <Text name="Video" value={video || ''} onChange={(e) => setVideo(e.target.value)} />
+              <div className="d-flex justify-content-center align-items-center pl-5">
+                {loading ? (
+                  <Button type="submit" disabled>
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  </Button>
+                ) : (
+                  <Button type="submit">Update</Button>
+                )}
+              </div>
+            </Form>
+          )}
         </Add>
       </Container>
 

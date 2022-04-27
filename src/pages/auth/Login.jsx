@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import swal from 'sweetalert';
@@ -11,6 +11,7 @@ import { login } from '../../store/actions/auth';
 function Login() {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  const input = useRef(null);
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -65,6 +66,7 @@ function Login() {
             toastr(err.response.data.message);
           }
         }
+        input.current.value = '';
         setLoading(false);
       });
   };
@@ -92,6 +94,7 @@ function Login() {
                     placeholder="Enter Email"
                     id="email"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
+                    ref={input}
                     onChange={onChangeInput}
                     required
                   />
@@ -105,6 +108,7 @@ function Login() {
                     placeholder="Password"
                     id="password"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
+                    ref={input}
                     onChange={onChangeInput}
                     required
                   />

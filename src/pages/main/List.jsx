@@ -105,8 +105,10 @@ function Search() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipe);
 
+  // const [page] = useState(1);
   const [limit] = useState(6);
   const [pageInfo] = useState(recipes.pageInfo.totalPage);
+  const [loading, setLoading] = useState(true);
 
   const [queryParams] = useSearchParams();
   const [querySearch, setQuerySearch] = useState('');
@@ -116,7 +118,7 @@ function Search() {
 
   useEffect(() => {
     document.title = 'Mama Recipe. - List Recipe';
-
+    // dispatch(getAllRecipes(page, limit, 'DESC'));
     if (queryParams.get('search')) {
       setQuerySearch(queryParams.get('search'));
       dispatch(getSearchRecipe(queryParams.get('search')));
@@ -127,6 +129,7 @@ function Search() {
     if (querySort) {
       dispatch(getSortRecipe(querySort));
     }
+    setLoading(false);
   }, []);
 
   const handleSort = (event) => {
@@ -186,7 +189,7 @@ function Search() {
       <Latest>
         {/* <TitleSection className="mb-4 mb-md-5">Popular Recipe</TitleSection> */}
         <List>
-          {recipes.isLoading ? (
+          {recipes.isLoading || loading ? (
             <ContentLoader />
           ) : recipes.isError ? (
             <h1>{recipes.message}</h1>

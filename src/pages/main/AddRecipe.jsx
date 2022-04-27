@@ -51,17 +51,24 @@ function AddRecipe({ edit }) {
   const params = useParams();
   const hiddenFileInput = useRef(null);
   const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const recipe = useSelector((state) => state.recipe);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [video, setVideo] = useState('');
+  // const [load, setLoad] = useState(false);
 
   useEffect(() => {
     document.title = edit ? 'Mama Recipe. - Edit Recipe Page' : 'Mama Recipe. - Add Recipe Page';
 
+    if (params.id) {
+      edit = true;
+    } else {
+      edit = false;
+    }
     if (edit) {
       dispatch(getRecipeById(params.id));
       setTitle(recipe.data.title);
@@ -70,8 +77,24 @@ function AddRecipe({ edit }) {
       recipe.data.image
         ? (document.getElementById('customBtn').innerHTML = recipe.data.image)
         : (document.getElementById('customBtn').innerHTML = 'Add Photo');
+      setIsLoading(false);
     }
+    // alert(load);
   }, []);
+
+  // let foo = true;
+  // if (foo) {
+
+  //   foo = false;
+  // } else {
+
+  // }
+  // alert(foo);
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+
+  // }, [params.id]);
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -153,29 +176,33 @@ function AddRecipe({ edit }) {
 
       <Container fluid>
         <Add>
-          <Form method="post" encType="multipart/form-data" onSubmit={onSubmit}>
-            <File
-              handleChange={handleChange}
-              hiddenFileInput={hiddenFileInput}
-              handleClick={handleClick}
-            />
-            <Text name="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Textarea value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
-            <Text name="Video" value={video} onChange={(e) => setVideo(e.target.value)} />
-            <div className="d-flex justify-content-center align-items-center pl-5">
-              {loading ? (
-                <Button type="submit" disabled>
-                  <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                </Button>
-              ) : (
-                <Button type="submit">{edit ? 'Update' : 'Post'}</Button>
-              )}
-            </div>
-          </Form>
+          {isLoading ? (
+            <div>Loading</div>
+          ) : (
+            <Form method="post" encType="multipart/form-data" onSubmit={onSubmit}>
+              <File
+                handleChange={handleChange}
+                hiddenFileInput={hiddenFileInput}
+                handleClick={handleClick}
+              />
+              <Text name="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+              <Textarea value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
+              <Text name="Video" value={video} onChange={(e) => setVideo(e.target.value)} />
+              <div className="d-flex justify-content-center align-items-center pl-5">
+                {loading ? (
+                  <Button type="submit" disabled>
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  </Button>
+                ) : (
+                  <Button type="submit">{edit ? 'Update' : 'Post'}</Button>
+                )}
+              </div>
+            </Form>
+          )}
         </Add>
       </Container>
 

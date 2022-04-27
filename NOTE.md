@@ -1,5 +1,5 @@
 1. Perbaikan Edit Recipe
-2. 
+2. Detail Recipe langsung redirect error
 
 Fixing Redux
 
