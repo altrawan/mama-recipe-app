@@ -1,0 +1,13 @@
+/* Airbnb Cereal App Fonts */
+@font-face {
+  font-family: 'Airbnb Cereal App Bold';
+  src: local('AirbnbCerealBold'), url("./assets/fonts/AirbnbCerealBold.woff") format('woff');
+}
+@font-face {
+  font-family: 'Airbnb Cereal App Light';
+  src: local('AirbnbCerealLight'), url("./assets/fonts/AirbnbCerealLight.woff") format('woff');
+}
+@font-face {
+  font-family: 'Airbnb Cereal App Medium';
+  src: local('AirbnbCerealMedium'), url("./assets/fonts/AirbnbCerealMedium.woff") format('woff');
+}
