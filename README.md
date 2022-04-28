@@ -16,56 +16,70 @@ Mama Recipe is here to help you cook delicious and simple meals. We offer recipe
   <summary>
     Landing Page
   </summary>
-<img src="demo/Landing Page - Desktop.png" alt="Landing Page" />
+<img src="screenshoots/Landing Page - Desktop.png" alt="Landing Page" />
 </details>
 
 <details>
   <summary>
     Login Page
   </summary>
-<img src="demo/Login Page - Desktop.png" alt="Login Page" />
+<img src="screenshoots/Login Page - Desktop.png" alt="Login Page" />
 </details>
 
 <details>
   <summary>
     Register Page
   </summary>
-<img src="demo/Register Page - Desktop.png" alt="Register Page" />
+<img src="screenshoots/Register Page - Desktop.png" alt="Register Page" />
+</details>
+
+<details>
+  <summary>
+    Register Page
+  </summary>
+<img src="screenshoots/Forgot Password Page - Desktop.png" alt="Register Page" />
+</details>
+
+<details>
+  <summary>
+    Register Page
+  </summary>
+<img src="screenshoots/Reset Password Page - Desktop.png" alt="Register Page" />
 </details>
 
 <details>
   <summary>
     Detail Recipe Page
   </summary>
-<img src="demo/Detail Recipe Page - Desktop.png" alt="Detail Recipe Page" />
+<img src="screenshoots/Detail Recipe Page - Desktop.png" alt="Detail Recipe Page" />
 </details>
 
 <details>
   <summary>
     Detail Video Page
   </summary>
-<img src="demo/Detail Video Page - Desktop.png" alt="Detail Video Page" />
+<img src="screenshoots/Detail Video Page - Desktop.png" alt="Detail Video Page" />
 </details>
 
 <details>
   <summary>
     View Recipe Page
   </summary>
-<img src="demo/View Recipe Page - Desktop.png" alt="View Recipe Page" />
+<img src="screenshoots/View Recipe Page - Desktop.png" alt="View Recipe Page" />
 </details>
 
 <details>
   <summary>
     Add Recipe Page
   </summary>
-<img src="demo/Add Recipe Page - Desktop.png" alt="Add Recipe Page" />
+<img src="screenshoots/Add Recipe Page - Desktop.png" alt="Add Recipe Page" />
 </details>
 
 <details>
   <summary>
     Profile Page
   </summary>
-<img src="demo/Profile Page - Desktop.png" alt="Profile Page" />
+<img src="screenshoots/Profile Page - Desktop.png" alt="Profile Page" />
 </details>
 
 ## Related Project
