@@ -35,14 +35,14 @@ Mama Recipe is here to help you cook delicious and simple meals. We offer recipe
 
 <details>
   <summary>
-    Register Page
+    Forgot Password Page
   </summary>
 <img src="screenshoots/Forgot Password Page - Desktop.png" alt="Register Page" />
 </details>
 
 <details>
   <summary>
-    Register Page
+    Reset Password Page
   </summary>
 <img src="screenshoots/Reset Password Page - Desktop.png" alt="Register Page" />
 </details>
