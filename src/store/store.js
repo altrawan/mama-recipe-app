@@ -7,8 +7,7 @@ import rootReducers from './reducers';
 
 const persistConfig = {
   key: 'root',
-  storage,
-  whitelist: ['auth', 'user', 'recipe', 'comment', 'savedRecipe', 'likedRecipe', 'dipisahin']
+  storage
 };
 
 const persitedReducer = persistReducer(persistConfig, rootReducers);
