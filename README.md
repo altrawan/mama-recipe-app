@@ -100,89 +100,68 @@ REACT_APP_STAGING=[dev / prod]
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Screenshoots
-<details>
-  <summary>
-    Landing Page
-  </summary>
-<img src="screenshoots/Landing Page - Desktop.png" alt="Landing Page" />
-</details>
+<p align="center" display=flex>
 
-<details>
-  <summary>
-    Login Page
-  </summary>
-<img src="screenshoots/Login Page - Desktop.png" alt="Login Page" />
-</details>
+   <img src="screenshoots/Landing Page - Desktop.png" alt="Landing Page" width=50% />
+   <p align="center">Landing Page</p>
 
-<details>
-  <summary>
-    Register Page
-  </summary>
-<img src="screenshoots/Register Page - Desktop.png" alt="Register Page" />
-</details>
+<table>
+ 
+  <tr>
+    <td><image src="screenshoots/Login Page - Desktop.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshoots/Register Page - Desktop.png" alt="Register Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Login Page</td>
+    <td>Register Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="screenshoots/Forgot Password Page - Desktop.png" alt="Forgot Password Page" width=100%></td>
+    <td><image src="screenshoots/Reset Password Page - Desktop.png" alt="Reset Password Page" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Forgot Password Page</td>
+    <td>Reset Password Page</td>
+  </tr>
 
-<details>
-  <summary>
-    Forgot Password Page
-  </summary>
-<img src="screenshoots/Forgot Password Page - Desktop.png" alt="Register Page" />
-</details>
+  <tr>
+    <td><image src="screenshoots/Detail Recipe Page - Desktop.png" alt="Detail Recipe Page" width=100%></td>
+    <td><image src="screenshoots/List Recipe Page - Desktop.png" alt="List Recipe Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Detail Recipe Page</td>
+      <td>List Recipe Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="screenshoots/Add Recipe Page - Desktop.png" alt="Add Recipe Page" width=100%/></td>
+    <td><image src="screenshoots/Profile Page - Desktop.png" alt="Profile Page"' width=100%></td>
+  </tr>
+  <tr>
+    <td>Add Recipe Page</td>
+    <td>Profile Page</td>
+  </tr>
+  
 
-<details>
-  <summary>
-    Reset Password Page
-  </summary>
-<img src="screenshoots/Reset Password Page - Desktop.png" alt="Register Page" />
-</details>
-
-<details>
-  <summary>
-    Detail Recipe Page
-  </summary>
-<img src="screenshoots/Detail Recipe Page - Desktop.png" alt="Detail Recipe Page" />
-</details>
-
-<details>
-  <summary>
-    Detail Video Page
-  </summary>
-<img src="screenshoots/Detail Video Page - Desktop.png" alt="Detail Video Page" />
-</details>
-
-<details>
-  <summary>
-    View Recipe Page
-  </summary>
-<img src="screenshoots/List Recipe Page - Desktop.png" alt="View Recipe Page" />
-</details>
-
-<details>
-  <summary>
-    Add Recipe Page
-  </summary>
-<img src="screenshoots/Add Recipe Page - Desktop.png" alt="Add Recipe Page" />
-</details>
-
-<details>
-  <summary>
-    Profile Page
-  </summary>
-<img src="screenshoots/Profile Page - Desktop.png" alt="Profile Page" />
-</details>
-
-<details>
-  <summary>
-    Edit Profile Page
-  </summary>
-<img src="screenshoots/Edit Profile Page - Desktop.png" alt="Profile Page" />
-</details>
-
-<details>
-  <summary>
-    Change Password Page
-  </summary>
-<img src="screenshoots/Change Password Page - Desktop.png" alt="Profile Page" />
-</details>
+  <tr>
+    <td><image src="screenshoots/Edit Profile Page - Desktop.png" alt="Profile Page" width=100%></td> 
+    <td><image src="screenshoots/Change Password Page - Desktop.png" alt="Profile Page" width=100%></td>  
+  </tr>
+  <tr>
+    <td>Edit Profile Page</td>
+    <td>Change Password Page</td>
+  </tr>
+   
+  <tr>
+      <td><image src="screenshoots/Detail Video Page - Desktop.png" alt="Detail Video Page" width=100%/></td>
+  </tr>
+  <tr>
+      <td>Detail Video Page</td>
+  </tr>
+</table>
+      
+</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
