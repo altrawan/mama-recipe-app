@@ -178,7 +178,7 @@ Contributions are what make the open source community such an amazing place to b
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Related Project
-:rocket: [`Backend Mama Recipe`](https://github.com/aryairama/zwallet-express)
+:rocket: [`Backend Mama Recipe`](https://github.com/altrawan/food-recipe-api)
 
 :rocket: [`Frontend Mama Recipe`](https://github.com/altrawan/mama-recipe-app)
 
