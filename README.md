@@ -35,14 +35,14 @@ Mama Recipe is here to help you cook delicious and simple meals. We offer recipe
 
 <details>
   <summary>
-    Register Page
+    Forgot Password Page
   </summary>
 <img src="screenshoots/Forgot Password Page - Desktop.png" alt="Register Page" />
 </details>
 
 <details>
   <summary>
-    Register Page
+    Reset Password Page
   </summary>
 <img src="screenshoots/Reset Password Page - Desktop.png" alt="Register Page" />
 </details>
@@ -65,7 +65,7 @@ Mama Recipe is here to help you cook delicious and simple meals. We offer recipe
   <summary>
     View Recipe Page
   </summary>
-<img src="screenshoots/View Recipe Page - Desktop.png" alt="View Recipe Page" />
+<img src="screenshoots/List Recipe Page - Desktop.png" alt="View Recipe Page" />
 </details>
 
 <details>
@@ -80,6 +80,20 @@ Mama Recipe is here to help you cook delicious and simple meals. We offer recipe
     Profile Page
   </summary>
 <img src="screenshoots/Profile Page - Desktop.png" alt="Profile Page" />
+</details>
+
+<details>
+  <summary>
+    Edit Profile Page
+  </summary>
+<img src="screenshoots/Edit Profile Page - Desktop.png" alt="Profile Page" />
+</details>
+
+<details>
+  <summary>
+    Change Password Page
+  </summary>
+<img src="screenshoots/Change Password Page - Desktop.png" alt="Profile Page" />
 </details>
 
 ## Related Project
