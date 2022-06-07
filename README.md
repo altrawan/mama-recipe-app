@@ -37,6 +37,7 @@
   * [Installation](#installation)
   * [Setup .env](#setup-env)
 * [Screenshots](#screenshoots)
+* [Contributing](#contributing)
 * [Related Project](#related-project)
 * [Contact](#contact)
 * [License](#license)
