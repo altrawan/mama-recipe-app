@@ -162,15 +162,13 @@ REACT_APP_STAGING=[dev / prod]
     <td>Edit Profile Page</td>
     <td>Change Password Page</td>
   </tr>
-      
-  <tr>
-      <td><image src="https://lh3.googleusercontent.com/d/1aQVZm0R9bjehg5gan22Fze51j5ga0u8f" alt="Detail Video Page" width=100%/></td>
-  </tr>
-  <tr>
-      <td>Detail Video Page</td>
-  </tr>
 
 </table>
+   
+   <p align="center">
+      <img src="https://lh3.googleusercontent.com/d/1aQVZm0R9bjehg5gan22Fze51j5ga0u8f" alt="Detail Video Page" width=50% />
+   </p>
+   <p align="center">Detail Video Page</p>
       
 </p>
 
