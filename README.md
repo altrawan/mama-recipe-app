@@ -1,46 +1,55 @@
 <div id="top"></div>
-<p align="center">
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
   <a href="https://github.com/altrawan/mama-recipe-app">
-    <img src="./screenshoots/Logo.png"  width="150px" alt="Logo">
+    <img src="https://lh3.googleusercontent.com/d/1AuO1tJ469WqoXQufUeR-OkzqAW258aXT" alt="Logo" width="150px">
   </a>
-</p>
-<h3 align="center">Mama Recipe</h3>
-<p align="center">
-  Discover Recipe & Delicious Food.
-  <br/>
-  <a href="#table-of-contents">
-    <strong>Explore the docs »</strong>
-  </a>
-  <br /><br/>
-  <a href="https://bit.ly/mama-recipe-app">View Demo</a>
-  ·
-  <a href="https://github.com/altrawan/mama-recipe-app/issues">Report Bug</a>
-  ·
-  <a href="https://github.com/altrawan/mama-recipe-app">Request Feature</a>
-</p>
-<p align="center">
-  <a href="https://reactjs.org/">
-    <img src="https://img.shields.io/badge/React-v17-blue?style=flat">
-  </a>
-  <a href="https://getbootstrap.com/docs/5.1/getting-started/introduction/">
-    <img src="https://img.shields.io/badge/Bootstrap-v5-blueviolet?style=flat">
-  </a>                                     
-</p>
+
+  <h3 align="center">Mama Recipe</h3>
+
+  <p align="center">
+    Discover Recipe & Delicious Food.
+    <br />
+    <a href="#table-of-contents"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://bit.ly/mama-recipe-app">View Demo</a>
+    ·
+    <a href="https://github.com/altrawan/mama-recipe-app/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/altrawan/mama-recipe-app/issues">Request Feature</a>
+  </p>
+</div>
 
 <!-- TABLE OF CONTENTS -->
  ## Table of Contents
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-  * [Setup .env](#setup-env)
-* [Screenshots](#screenshoots)
-* [Contributing](#contributing)
-* [Related Project](#related-project)
-* [Contact](#contact)
-* [License](#license)
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#setup-env-example">Setup .env example</a></li>
+      </ul>
+    </li>
+    <li><a href="#screenshoots">Screenshots</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#related-project">Related Project</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -90,7 +99,7 @@ npm install
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Setup .env
+### Setup .env example
 Create .env file in your root project folder.
 ```
 REACT_APP_DEV=[BACKEND_URL_DEVELOPMENT]
@@ -102,15 +111,15 @@ REACT_APP_STAGING=[dev / prod]
 
 ## Screenshoots
 <p align="center" display=flex>
-
-   <img src="screenshoots/Landing Page - Desktop.png" alt="Landing Page" width=50% />
+  
+   <img src="https://lh3.googleusercontent.com/d/1xc7MuKFPS9UPFPoCjTL1ZL1mVMRMNUEd" alt="Landing Page" width=50% />
    <p align="center">Landing Page</p>
-
+   
 <table>
  
   <tr>
-    <td><image src="screenshoots/Login Page - Desktop.png" alt="Login Page" width=100%></td>
-    <td><image src="screenshoots/Register Page - Desktop.png" alt="Register Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1IK5raqmtiSmrL76VfweXMs_PhAbKMNLg" alt="Login Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1gCnHqxD76dkP5eOfgTDRReolDFZF2JS1" alt="Register Page" width=100%/></td>
   </tr>
    <tr>
     <td>Login Page</td>
@@ -118,8 +127,8 @@ REACT_APP_STAGING=[dev / prod]
   </tr>
   
   <tr>
-    <td><image src="screenshoots/Forgot Password Page - Desktop.png" alt="Forgot Password Page" width=100%></td>
-    <td><image src="screenshoots/Reset Password Page - Desktop.png" alt="Reset Password Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1mG-d5amm4MFtRb1XENX3I6z87He3cQXm" alt="Forgot Password Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1U1F6VhMl2D76RSA-AOZowEZK_kNNkEeJ" alt="Reset Password Page" width=100%/></td>
   </tr>
   <tr>
     <td>Forgot Password Page</td>
@@ -127,8 +136,8 @@ REACT_APP_STAGING=[dev / prod]
   </tr>
 
   <tr>
-    <td><image src="screenshoots/Detail Recipe Page - Desktop.png" alt="Detail Recipe Page" width=100%></td>
-    <td><image src="screenshoots/List Recipe Page - Desktop.png" alt="List Recipe Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/11rruAo3igBhfLoX9a-kY1YoDO5GeAY-b" alt="Detail Recipe Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1yvJbwWdW4Q4ojXUTfT9XFO_FqOpgmwnl" alt="List Recipe Page" width=100%></td>
   </tr>
   <tr>
       <td>Detail Recipe Page</td>
@@ -136,8 +145,8 @@ REACT_APP_STAGING=[dev / prod]
   </tr>
   
   <tr>
-    <td><image src="screenshoots/Add Recipe Page - Desktop.png" alt="Add Recipe Page" width=100%/></td>
-    <td><image src="screenshoots/Profile Page - Desktop.png" alt="Profile Page"' width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1bAHGnVa7vh525hVT_4lfNBDIDlYTfv4p" alt="Add Recipe Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1NC3AmMHx34kNKQowNjuo0367GS5Gon3r" alt="Profile Page"' width=100%></td>
   </tr>
   <tr>
     <td>Add Recipe Page</td>
@@ -146,20 +155,21 @@ REACT_APP_STAGING=[dev / prod]
   
 
   <tr>
-    <td><image src="screenshoots/Edit Profile Page - Desktop.png" alt="Profile Page" width=100%></td> 
-    <td><image src="screenshoots/Change Password Page - Desktop.png" alt="Profile Page" width=100%></td>  
+    <td><image src="https://lh3.googleusercontent.com/d/1xCwZ5wmmjA_KRbADB97cXYBfb0AN4p5f" alt="Edit Profile Page" width=100%></td> 
+    <td><image src="https://lh3.googleusercontent.com/d/1Uv93s9BC1Pu5Jr9V7PpT2coT5hReocUV" alt="Change Password Page" width=100%></td>  
   </tr>
   <tr>
     <td>Edit Profile Page</td>
     <td>Change Password Page</td>
   </tr>
-   
+      
   <tr>
-      <td><image src="screenshoots/Detail Video Page - Desktop.png" alt="Detail Video Page" width=100%/></td>
+      <td><image src="https://lh3.googleusercontent.com/d/1aQVZm0R9bjehg5gan22Fze51j5ga0u8f" alt="Detail Video Page" width=100%/></td>
   </tr>
   <tr>
       <td>Detail Video Page</td>
   </tr>
+
 </table>
       
 </p>
