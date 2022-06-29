@@ -21,7 +21,7 @@ function Register() {
   const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
-    document.title = `${process.env.REACT_APP_NAME} - Register Page`;
+    document.title = `${process.env.REACT_APP_APP_NAME} - Register Page`;
   }, []);
 
   const onChangeInput = (e) => {
@@ -39,9 +39,9 @@ function Register() {
     e.preventDefault();
     const { name, email, phone, password, passwordConfirmation } = form;
     if (!name || !email || !phone || !password || !passwordConfirmation) {
-      Swal.fire('Failed!', 'All data must be filled', 'warning');
+      Swal('Failed!', 'All data must be filled', 'warning');
     } else if (password !== passwordConfirmation) {
-      Swal.fire('Failed!', 'Password confirmation does not match password', 'warning');
+      Swal('Failed!', 'Password confirmation does not match password', 'warning');
     } else {
       setLoading(true);
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import swal from 'sweetalert';
+import Swal from 'sweetalert';
 import jwt_decode from 'jwt-decode';
 import Banner from '../../components/Banner';
 import { updatePassword } from '../../store/actions/user';
@@ -15,7 +15,7 @@ function ChangePassword() {
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    newPassword: '',
+    password: '',
     passwordConfirmation: ''
   });
 
@@ -32,27 +32,31 @@ function ChangePassword() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
+    if (!form.password || !form.passwordConfirmation) {
+      Swal('Failed!', 'All data must be filled', 'warning');
+    } else if (form.password !== form.passwordConfirmation) {
+      Swal('Failed!', 'Password confirmation does not match password', 'warning');
+    } else {
+      setLoading(true);
 
-    updatePassword(form, decoded.id)
-      .then((res) => {
-        swal({
-          title: 'Success!',
-          text: res.message,
-          icon: 'success'
-        }).then(() => {
-          navigate('/profile');
+      updatePassword(form, decoded.id)
+        .then((res) => {
+          Swal('Success!', res.message, 'success').then(() => {
+            navigate('/profile');
+          });
+        })
+        .catch((err) => {
+          if (err.response.data.code === 422) {
+            const { error } = err.response.data;
+            error.map((el) => toastr(el, 'error'));
+          } else {
+            Swal('Error!', err.response.data.message, 'error');
+          }
+        })
+        .finally(() => {
+          setLoading(false);
         });
-      })
-      .catch((err) => {
-        if (err.response.status === 422) {
-          const error = err.response.data.errors;
-          error.map((e) => toastr(e));
-        } else {
-          toastr(err.response.data.message);
-        }
-        setLoading(false);
-      });
+    }
   };
 
   return (
@@ -65,13 +69,13 @@ function ChangePassword() {
             <div className="col-10 col-md-8 col-xl-6 d-flex flex-column justify-content-center align-items-center p-0">
               <Form className="w-100 mb-3 mt-3" onSubmit={onSubmit}>
                 <FormGroup className="mb-3">
-                  <Label for="newPassword" className="mb-2 label">
+                  <Label for="password" className="mb-2 label">
                     Create New Password
                   </Label>
                   <Input
                     type="password"
                     placeholder="Create New Password"
-                    id="newPassword"
+                    id="password"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
                     onChange={onChangeInput}
                     required
@@ -97,7 +101,7 @@ function ChangePassword() {
                   </Label>
                 </FormGroup>
                 {loading ? (
-                  <Button type="submit" className="w-100 btn-main pt-3 pb-3" disabled>
+                  <Button className="w-100 btn-main pt-3 pb-3" disabled>
                     <span
                       className="spinner-border spinner-border-sm"
                       role="status"

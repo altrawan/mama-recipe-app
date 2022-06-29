@@ -14,13 +14,13 @@ function ForgotPassword() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    document.title = `${process.env.REACT_APP_NAME} - Forgot Password Page`;
+    document.title = `${process.env.REACT_APP_APP_NAME} - Forgot Password Page`;
   }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!email) {
-      Swal.fire('Failed!', 'Email must be filled', 'warning');
+      Swal('Failed!', 'Email must be filled', 'warning');
     } else {
       setLoading(true);
 

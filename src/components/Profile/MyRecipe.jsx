@@ -5,7 +5,7 @@ import { TabPane, Row, Col, Card, CardBody } from 'reactstrap';
 import swal from 'sweetalert';
 import { deleteRecipe } from '../../store/actions/recipe';
 import { useDispatch } from 'react-redux';
-import { getRecipeByUser } from '../../store/actions/recipe';
+import { getUserRecipes } from '../../store/actions/recipe';
 import jwt_decode from 'jwt-decode';
 
 const Image = styled.img`
@@ -65,7 +65,7 @@ function MyRecipe({ me, myRecipe }) {
               text: res.message,
               icon: 'success'
             });
-            dispatch(getRecipeByUser(decoded.id));
+            dispatch(getUserRecipes(decoded.id));
           })
           .catch((err) => {
             swal({

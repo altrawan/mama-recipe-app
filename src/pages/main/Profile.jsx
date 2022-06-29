@@ -1,17 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { Container } from 'reactstrap';
-import swal from 'sweetalert';
-import ContentLoader from 'react-content-loader';
+import Swal from 'sweetalert';
+import { Instagram } from 'react-content-loader';
 import { useSelector, useDispatch } from 'react-redux';
 import icon from '../../assets/icons/edit.svg';
-import { getUserById, updatePhoto } from '../../store/actions/user';
-
+import { getDetailUser, updatePhoto } from '../../store/actions/user';
+import User from '../../assets/img/user.png';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Profile/Button';
-import Tabs from '../../components/Profile/Tabs';
+// import Tabs from '../../components/Profile/Tabs';
 import Footer from '../../components/Footer';
 
 const Section = styled.section`
@@ -52,19 +52,20 @@ const Username = styled.p`
 
 function Profile({ me = false }) {
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
   const decoded = jwt_decode(token);
 
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { detailUser } = useSelector((state) => state);
   const hiddenFileInput = useRef(null);
-
-  const user = useSelector((state) => state.user);
+  const [photoLoading, setPhotoLoading] = useState(false);
 
   useEffect(() => {
-    document.title = 'Mama Recipe. - Profile Page';
+    document.title = `${process.env.REACT_APP_APP_NAME} - ${me ? 'My Profile' : 'Profile'}`;
 
     const userId = id || decoded.id;
-    dispatch(getUserById(userId));
+    dispatch(getDetailUser(userId, navigate));
   }, []);
 
   const handleClick = () => {
@@ -74,24 +75,22 @@ function Profile({ me = false }) {
   const handleChange = (event) => {
     const photo = event.target.files[0];
     const formData = new FormData();
-    formData.append('photo', photo);
+    if (photo) {
+      formData.append('image', photo);
+    }
 
+    setPhotoLoading(true);
     updatePhoto(formData, decoded.id)
       .then((res) => {
-        swal({
-          title: 'Success!',
-          text: res.message,
-          icon: 'success'
-        }).then(() => {
-          dispatch(getUserById(decoded.id));
+        Swal('Success!', res.message, 'success').then(() => {
+          dispatch(getDetailUser(decoded.id, navigate));
         });
       })
       .catch((err) => {
-        swal({
-          title: 'Error!',
-          text: err.response.data.message,
-          icon: 'error'
-        });
+        Swal('Error!', err.message, 'error');
+      })
+      .finally(() => {
+        setPhotoLoading(false);
       });
   };
 
@@ -99,35 +98,25 @@ function Profile({ me = false }) {
     <>
       <Navbar isLogin={token} />
       <Container fluid>
-        {user.isLoading ? (
-          <ContentLoader />
-        ) : user.isError ? (
-          swal({
-            title: 'Failed!',
-            text: user.message,
-            icon: 'warning'
-          })
+        {detailUser.isLoading ? (
+          <Instagram />
+        ) : detailUser.isError ? (
+          <div>Error</div>
         ) : (
           <Section>
             <div className="d-flex justify-content-center">
               <div className="position-relative">
-                {user.data.photo ? (
-                  <Photo
-                    src={`${
-                      process.env.REACT_APP_STAGING === 'dev'
-                        ? `${process.env.REACT_APP_DEV}uploads/user/${user.data.photo}`
-                        : `${process.env.REACT_APP_PROD}uploads/user/${user.data.photo}`
-                    }`}
-                    alt={user.data.name}
-                  />
+                {photoLoading ? (
+                  <div className="spinner-border text-warning" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
                 ) : (
                   <Photo
-                    src={`${
-                      process.env.REACT_APP_STAGING === 'dev'
-                        ? `${process.env.REACT_APP_DEV}uploads/user/avatar.webp`
-                        : `${process.env.REACT_APP_PROD}uploads/user/avatar.webp`
-                    }`}
-                    alt={user.data.name}
+                    src={`https://drive.google.com/uc?export=view&id=${detailUser.data.photo}`}
+                    alt={detailUser.data.name}
+                    onError={(e) => {
+                      e.target.src = User;
+                    }}
                   />
                 )}
 
@@ -141,11 +130,11 @@ function Profile({ me = false }) {
                 />
               </div>
             </div>
-            <Username>{user.data.name}</Username>
+            <Username>{detailUser.data.name}</Username>
             <Button me={me} />
           </Section>
         )}
-        <Tabs me={me} profile={user} />
+        {/* <Tabs me={me} profile={detailUser} /> */}
       </Container>
       <Footer />
     </>

@@ -1,26 +1,28 @@
-import { GET_LIST_RECIPE_PENDING, GET_LIST_RECIPE_SUCCESS, GET_LIST_RECIPE_FAILED } from '../types';
+import {
+  GET_RECIPE_COMMENTS_PENDING,
+  GET_RECIPE_COMMENTS_SUCCESS,
+  GET_RECIPE_COMMENTS_FAILED
+} from '../types';
 
 const initialState = {
   isLoading: false,
   isError: false,
   data: [],
-  pagination: [],
   error: null
 };
 
-const listRecipeReducer = (state = initialState, action) => {
+const recipeCommentsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_LIST_RECIPE_PENDING:
+    case GET_RECIPE_COMMENTS_PENDING:
       return { ...state, isLoading: true };
-    case GET_LIST_RECIPE_SUCCESS:
+    case GET_RECIPE_COMMENTS_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
-        data: action.payload.data,
-        pagination: action.payload.pagination
+        data: action.payload.data
       };
-    case GET_LIST_RECIPE_FAILED:
+    case GET_RECIPE_COMMENTS_FAILED:
       return {
         ...state,
         isLoading: false,
@@ -32,4 +34,4 @@ const listRecipeReducer = (state = initialState, action) => {
   }
 };
 
-export default listRecipeReducer;
+export default recipeCommentsReducer;

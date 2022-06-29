@@ -14,13 +14,13 @@ function ChangePassword() {
   const [verifyCode, setVerifyCode] = useState('');
 
   useEffect(() => {
-    document.title = `${process.env.REACT_APP_NAME} - Verification Code Page`;
+    document.title = `${process.env.REACT_APP_APP_NAME} - Verification Code Page`;
   }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!verifyCode) {
-      Swal.fire('Failed!', 'Code must be filled', 'warning');
+      Swal('Failed!', 'Code must be filled', 'warning');
     } else {
       setLoading(true);
 

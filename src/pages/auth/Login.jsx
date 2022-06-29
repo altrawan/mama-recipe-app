@@ -18,7 +18,7 @@ function Login() {
   });
 
   useEffect(() => {
-    document.title = `${process.env.REACT_APP_NAME} - Login Page`;
+    document.title = `${process.env.REACT_APP_APP_NAME} - Login Page`;
   }, []);
 
   const onChangeInput = (e) => {
@@ -31,7 +31,7 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault();
     if (!form.email || !form.password) {
-      Swal.fire('Failed!', 'All data must be filled', 'warning');
+      Swal('Failed!', 'All data must be filled', 'warning');
     } else {
       setLoading(true);
 

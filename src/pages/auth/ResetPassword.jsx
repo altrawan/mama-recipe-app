@@ -18,7 +18,7 @@ function ChangePassword() {
   });
 
   useEffect(() => {
-    document.title = `${process.env.REACT_APP_NAME} - Reset Password Page`;
+    document.title = `${process.env.REACT_APP_APP_NAME} - Reset Password Page`;
   }, []);
 
   const onChangeInput = (e) => {
@@ -31,7 +31,9 @@ function ChangePassword() {
   const onSubmit = (event) => {
     event.preventDefault();
     if (!form.password || !form.passwordConfirmation) {
-      Swal.fire('Failed!', 'All data must be filled', 'warning');
+      Swal('Failed!', 'All data must be filled', 'warning');
+    } else if (form.password !== form.passwordConfirmation) {
+      Swal('Failed!', 'Password confirmation does not match password', 'warning');
     } else {
       setLoading(true);
 
@@ -64,7 +66,7 @@ function ChangePassword() {
             <div className="col-10 col-md-8 col-xl-6 d-flex flex-column justify-content-center align-items-center p-0">
               <Form className="w-100 mb-3 mt-3" onSubmit={onSubmit}>
                 <FormGroup className="mb-3">
-                  <Label for="newPassword" className="mb-2 label">
+                  <Label for="password" className="mb-2 label">
                     Create New Password
                   </Label>
                   <Input

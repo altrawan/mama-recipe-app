@@ -4,7 +4,7 @@ import { Container, Row } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRecipeById } from '../../store/actions/recipe';
-import { getListRecipe } from '../../store/actions/listRecipe';
+// import { getListRecipe } from '../../store/actions/listRecipe';
 
 import Navbar from '../../components/Navbar';
 import Video from '../../components/Video/Video';
@@ -37,7 +37,7 @@ function DetailVideo() {
     document.title = 'Mama Recipe. - Detail Video Page';
 
     dispatch(getRecipeById(id));
-    dispatch(getListRecipe(1, 3, 'DESC'));
+    // dispatch(getListRecipe(1, 3, 'DESC'));
   }, []);
 
   return (

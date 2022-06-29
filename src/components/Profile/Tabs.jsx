@@ -1,18 +1,17 @@
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useSearchParams, useParams } from 'react-router-dom';
 import { Nav, NavItem, NavLink, TabContent } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import jwt_decode from 'jwt-decode';
-import swal from 'sweetalert';
+// import Swal from 'sweetalert';
 import ContentLoader from 'react-content-loader';
-import { getRecipeByUser } from '../../store/actions/recipe';
-import { getListSavedRecipe } from '../../store/actions/savedRecipe';
-import { getListLikedRecipe } from '../../store/actions/likedRecipe';
+import { getUserRecipes } from '../../store/actions/recipe';
+// import { getListSavedRecipe } from '../../store/actions/savedRecipe';
+// import { getListLikedRecipe } from '../../store/actions/likedRecipe';
 import MyRecipe from './MyRecipe';
-import SavedRecipe from './SavedRecipe';
-import LikedRecipe from './LikedRecipe';
+// import SavedRecipe from './SavedRecipe';
+// import LikedRecipe from './LikedRecipe';
 
 const Menu = styled.div`
   margin-top: 10px;
@@ -33,17 +32,18 @@ function Tabs({ me, profile }) {
   const { id } = useParams();
 
   const dispatch = useDispatch();
-  const myRecipe = useSelector((state) => state.recipe);
-  const savedRecipe = useSelector((state) => state.savedRecipe);
-  const likedRecipe = useSelector((state) => state.likedRecipe);
+  const { userRecipes } = useSelector((state) => state);
+  // const myRecipe = useSelector((state) => state.recipe);
+  // const savedRecipe = useSelector((state) => state.savedRecipe);
+  // const likedRecipe = useSelector((state) => state.likedRecipe);
   const [tab, setTab] = useState('');
   const [queryParams] = useSearchParams();
 
   useEffect(() => {
     const userId = id || decoded.id;
-    dispatch(getRecipeByUser(userId));
-    dispatch(getListSavedRecipe(userId));
-    dispatch(getListLikedRecipe(userId));
+    dispatch(getUserRecipes(userId));
+    // dispatch(getListSavedRecipe(userId));
+    // dispatch(getListLikedRecipe(userId));
     setTab(queryParams.get('tab'));
   }, [queryParams]);
 
@@ -80,7 +80,7 @@ function Tabs({ me, profile }) {
       </Nav>
       <hr />
       <TabContent activeTab={tab}>
-        {tab === 'saved' &&
+        {/* {tab === 'saved' &&
           (savedRecipe.isLoading ? (
             <ContentLoader />
           ) : savedRecipe.isError ? (
@@ -103,20 +103,16 @@ function Tabs({ me, profile }) {
             })
           ) : (
             <LikedRecipe me={me} likedRecipe={likedRecipe} />
-          ))}
+          ))} */}
 
         {tab !== 'saved' &&
           tab !== 'saved' &&
-          (myRecipe.isLoading ? (
+          (userRecipes.isLoading ? (
             <ContentLoader />
-          ) : myRecipe.isError ? (
-            swal({
-              title: 'Failed!',
-              text: myRecipe.message,
-              icon: 'warning'
-            })
+          ) : userRecipes.isError ? (
+            <div>Error</div>
           ) : (
-            <MyRecipe me={me} myRecipe={myRecipe} />
+            <MyRecipe me={me} myRecipe={userRecipes} />
           ))}
       </TabContent>
     </Menu>
