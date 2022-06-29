@@ -25,3 +25,42 @@ export const register = (data) => {
       });
   });
 };
+
+export const forgot = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post('auth/forgot', data)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const verification = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post('auth/verification', data)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const reset = (data, token) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`auth/reset/${token}`, data)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

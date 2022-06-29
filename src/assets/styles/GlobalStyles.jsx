@@ -66,14 +66,14 @@ const GlobalStyles = createGlobalStyle`
   .navbar {
     background: transparent;
     padding: 20px 0;
-    transition: all 0.5 ease;
+    transition: all 0.5s ease;
     text-decoration: none;
   }
 
   .navbar.navbar-shrink {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     background-color: var(--main-color);
-    padding: 10px 0;
+    padding: 20px 0;
   }
 
   .navbar > .container {

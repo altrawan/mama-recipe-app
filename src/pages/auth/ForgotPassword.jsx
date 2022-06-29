@@ -1,80 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import swal from 'sweetalert';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert';
+import toastr from '../../utils/toastr';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import AuthStyles from '../../assets/styles/AuthStyles';
-
 import Banner from '../../components/Banner';
-
-toast.configure();
+import { forgot } from '../../store/actions/auth';
 
 function ForgotPassword() {
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
 
-  const [form, setForm] = useState({
-    email: '',
-    password: ''
-  });
-
-  const onChangeInput = (e, field) => {
-    setForm({
-      ...form,
-      [field]: e.target.value
-    });
-  };
+  useEffect(() => {
+    document.title = `${process.env.REACT_APP_NAME} - Forgot Password Page`;
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = form;
-    const body = {
-      email,
-      password
-    };
-    axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}auth/login/`, body)
-      .then((res) => {
-        localStorage.setItem('token', res.data.token);
-        swal({
-          title: 'Success!',
-          text: res.message,
-          icon: 'success'
-        }).then(() => {
-          navigate('/');
+    if (!email) {
+      Swal.fire('Failed!', 'Email must be filled', 'warning');
+    } else {
+      setLoading(true);
+
+      forgot({ email })
+        .then((res) => {
+          Swal('Success!', res.message, 'success');
+          navigate('/auth/verification');
+        })
+        .catch((err) => {
+          if (err.response.data.code === 422) {
+            const { error } = err.response.data;
+            error.map((el) => toastr(el, 'error'));
+          } else {
+            Swal('Error!', err.response.data.message, 'error');
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+          setEmail('');
         });
-      })
-      .catch((err) => {
-        if (err.response.status === 422) {
-          const error = err.response.data.errors;
-          error.map((e) => {
-            return toast.error(e, {
-              position: 'top-right',
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored'
-            });
-          });
-        } else {
-          toast.error(err.response.data.message, {
-            position: 'top-right',
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'colored'
-          });
-        }
-      });
+    }
   };
 
   return (
@@ -100,13 +67,23 @@ function ForgotPassword() {
                     placeholder="Enter email address"
                     id="email"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
-                    onChange={(e) => onChangeInput(e, 'password')}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </FormGroup>
-                <Button type="submit" className="w-100 btn-main pt-3 pb-3">
-                  Send E-mail
-                </Button>
+                {loading ? (
+                  <Button className="w-100 btn-main pt-3 pb-3" disabled>
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  </Button>
+                ) : (
+                  <Button type="submit" className="w-100 btn-main pt-3 pb-3">
+                    Send E-mail
+                  </Button>
+                )}
               </Form>
             </div>
           </Col>

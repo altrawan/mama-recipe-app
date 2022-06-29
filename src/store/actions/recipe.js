@@ -1,6 +1,34 @@
 import axios from '../../utils/axios';
+import {
+  GET_LATEST_RECIPE_PENDING,
+  GET_LATEST_RECIPE_SUCCESS,
+  GET_LATEST_RECIPE_FAILED
+} from '../types';
 
-const token = localStorage.getItem('token');
+export const getLatestRecipe = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_LATEST_RECIPE_PENDING,
+      payload: null
+    });
+
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/recipe/latest?limit=1`);
+
+    dispatch({
+      type: GET_LATEST_RECIPE_SUCCESS,
+      payload: res.data
+    });
+  } catch (error) {
+    if (error.response) {
+      error.message = error.response.data.error;
+    }
+
+    dispatch({
+      type: GET_LATEST_RECIPE_FAILED,
+      payload: error.message
+    });
+  }
+};
 
 export const getAllRecipes = (page, limit, sort) => {
   return {
@@ -37,10 +65,7 @@ export const getRecipeById = (id) => {
     type: 'GET_DETAIL_RECIPE',
     payload: axios({
       method: 'GET',
-      url: `recipe/${id}`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      url: `recipe/${id}`
     })
   };
 };
@@ -50,10 +75,7 @@ export const getRecipeByUser = (id) => {
     type: 'GET_MY_RECIPE',
     payload: axios({
       method: 'GET',
-      url: `recipe/user/${id}`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      url: `recipe/user/${id}`
     })
   };
 };
@@ -63,7 +85,6 @@ export const createRecipe = (data) => {
     axios
       .post('recipe', data, {
         headers: {
-          Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
         }
       })
@@ -81,7 +102,6 @@ export const updateRecipe = (data, id) => {
     axios
       .put(`recipe/${id}`, data, {
         headers: {
-          Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
         }
       })
@@ -97,11 +117,7 @@ export const updateRecipe = (data, id) => {
 export const deleteRecipe = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .delete(`recipe/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      .delete(`recipe/${id}`)
       .then((res) => {
         resolve(res.data);
       })

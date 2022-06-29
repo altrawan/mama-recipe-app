@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import PrivateRoute from '../utils/privateRoute';
+import PrivateRoute from './privateRoute';
+import PublicRoute from './publicRoute';
 import ScrollToTop from '../utils/scrollToTop';
 
 import Home from '../pages/main/Home';
@@ -8,12 +9,12 @@ import List from '../pages/main/List';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
+import Verification from '../pages/auth/Verification';
 import ResetPassword from '../pages/auth/ResetPassword';
 import Profile from '../pages/main/Profile';
 import ChangePassword from '../pages/main/ChangePassword';
 import EditProfile from '../pages/main/EditProfile';
 import Add from '../pages/main/AddRecipe';
-// import Edit from '../pages/main/EditRecipe';
 import Detail from '../pages/main/DetailRecipe';
 import Video from '../pages/main/DetailVideo';
 import NotFound from '../pages/main/NotFound';
@@ -24,14 +25,17 @@ function Router() {
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="list" element={<List />} />
+        </Route>
+        <Route path="auth/" element={<PublicRoute />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="forgot" element={<ForgotPassword />} />
+          <Route path="verification" element={<Verification />} />
+          <Route path="reset/:token" element={<ResetPassword />} />
         </Route>
         <Route path="recipe/" element={<PrivateRoute />}>
-          <Route index element={<Add />} />
+          <Route index element={<List />} />
+          <Route path="add" element={<Add />} />
           <Route path="edit/:id" element={<Add edit />} />
           <Route path=":id" element={<Detail />} />
           <Route path="video/:id" element={<Video />} />

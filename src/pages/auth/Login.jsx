@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import swal from 'sweetalert';
+import Swal from 'sweetalert';
 import jwt_decode from 'jwt-decode';
 import Banner from '../../components/Banner';
 import AuthStyles from '../../assets/styles/AuthStyles';
@@ -9,9 +9,7 @@ import toastr from '../../utils/toastr';
 import { login } from '../../store/actions/auth';
 
 function Login() {
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
-  const input = useRef(null);
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -20,12 +18,8 @@ function Login() {
   });
 
   useEffect(() => {
-    document.title = 'Mama Recipe. - Login Page';
-
-    if (token) {
-      return navigate('/');
-    }
-  }, [navigate, token]);
+    document.title = `${process.env.REACT_APP_NAME} - Login Page`;
+  }, []);
 
   const onChangeInput = (e) => {
     setForm({
@@ -36,39 +30,38 @@ function Login() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
+    if (!form.email || !form.password) {
+      Swal.fire('Failed!', 'All data must be filled', 'warning');
+    } else {
+      setLoading(true);
 
-    login(form)
-      .then((res) => {
-        localStorage.setItem('token', res.token);
-        const token = localStorage.getItem('token');
-        const decoded = jwt_decode(token);
+      login(form)
+        .then((res) => {
+          localStorage.setItem('token', res.token.token);
+          const token = localStorage.getItem('token');
+          const decoded = jwt_decode(token);
 
-        if (decoded.level === 0) {
-          navigate('/admin/dashboard');
-        } else {
-          navigate('/');
-        }
-
-        swal({
-          title: 'Success!',
-          text: res.message,
-          icon: 'success'
-        });
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.response) {
-          if (err.response.status === 422) {
-            const error = err.response.data.errors;
-            error.map((e) => toastr(e));
+          if (decoded.level === 0) {
+            navigate('/admin/dashboard');
           } else {
-            toastr(err.response.data.message);
+            navigate('/');
           }
-        }
-        input.current.value = '';
-        setLoading(false);
-      });
+
+          Swal('Success!', res.message, 'success');
+        })
+        .catch((err) => {
+          if (err.response.data.code === 422) {
+            const { error } = err.response.data;
+            error.map((el) => toastr(el, 'error'));
+          } else {
+            Swal('Error!', err.response.data.message, 'error');
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+          setForm({ email: '', password: '' });
+        });
+    }
   };
 
   return (
@@ -94,7 +87,6 @@ function Login() {
                     placeholder="Enter Email"
                     id="email"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
-                    ref={input}
                     onChange={onChangeInput}
                     required
                   />
@@ -108,7 +100,6 @@ function Login() {
                     placeholder="Password"
                     id="password"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
-                    ref={input}
                     onChange={onChangeInput}
                     required
                   />
@@ -120,7 +111,7 @@ function Login() {
                   </Label>
                 </FormGroup>
                 {loading ? (
-                  <Button type="submit" className="w-100 btn-main pt-3 pb-3" disabled>
+                  <Button className="w-100 btn-main pt-3 pb-3" disabled>
                     <span
                       className="spinner-border spinner-border-sm"
                       role="status"
@@ -135,14 +126,14 @@ function Login() {
               </Form>
               <div className="w-100 d-flex flex-column">
                 <div className="w-100 d-flex justify-content-end mb-3">
-                  <Link to="/forgot-password" className="forgot">
+                  <Link to="/auth/forgot" className="forgot">
                     Forgot Password?
                   </Link>
                 </div>
                 <div className="w-100 d-flex justify-content-center align-items-center">
                   <span className="alternative">
                     Don&apos;t have an account?{' '}
-                    <Link to="/register" className="main-color clicked text-decoration-none">
+                    <Link to="/auth/register" className="main-color clicked text-decoration-none">
                       Sign Up
                     </Link>
                   </span>

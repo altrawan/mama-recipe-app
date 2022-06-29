@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import swal from 'sweetalert';
+import Swal from 'sweetalert';
 import Banner from '../../components/Banner';
 import AuthStyles from '../../assets/styles/AuthStyles';
 import toastr from '../../utils/toastr';
 import { register } from '../../store/actions/auth';
 
 function Register() {
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -22,12 +21,8 @@ function Register() {
   const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
-    document.title = 'Mama Recipe. - Register Page';
-
-    if (token) {
-      return navigate('/');
-    }
-  }, [navigate, token]);
+    document.title = `${process.env.REACT_APP_NAME} - Register Page`;
+  }, []);
 
   const onChangeInput = (e) => {
     setForm({
@@ -42,39 +37,42 @@ function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    const formData = new FormData();
     const { name, email, phone, password, passwordConfirmation } = form;
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('password', password);
-    formData.append('passwordConfirmation', passwordConfirmation);
-    if (photo) {
-      formData.append('photo', photo);
-    }
+    if (!name || !email || !phone || !password || !passwordConfirmation) {
+      Swal.fire('Failed!', 'All data must be filled', 'warning');
+    } else if (password !== passwordConfirmation) {
+      Swal.fire('Failed!', 'Password confirmation does not match password', 'warning');
+    } else {
+      setLoading(true);
 
-    register(formData)
-      .then((res) => {
-        setLoading(false);
-        swal({
-          title: 'Success!',
-          text: res.message,
-          icon: 'success'
-        }).then(() => {
-          navigate('/login');
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('phone', phone);
+      formData.append('password', password);
+      formData.append('passwordConfirmation', passwordConfirmation);
+      if (photo) {
+        formData.append('image', photo);
+      }
+
+      register(formData)
+        .then((res) => {
+          Swal('Success!', res.message, 'success');
+          navigate('/auth/login');
+        })
+        .catch((err) => {
+          if (err.response.data.code === 422) {
+            const { error } = err.response.data;
+            error.map((el) => toastr(el, 'error'));
+          } else {
+            Swal('Error!', err.response.data.message, 'error');
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+          setForm({ password: '', passwordConfirmation: '' });
         });
-      })
-      .catch((err) => {
-        if (err.response.status === 422) {
-          const error = err.response.data.errors;
-          error.map((e) => toastr(e));
-        } else {
-          toastr(err.response.data.message);
-        }
-        setLoading(false);
-      });
+    }
   };
 
   return (
@@ -173,7 +171,7 @@ function Register() {
                   </Label>
                 </FormGroup>
                 {loading ? (
-                  <Button type="submit" className="w-100 btn-main pt-3 pb-3" disabled>
+                  <Button className="w-100 btn-main pt-3 pb-3" disabled>
                     <span
                       className="spinner-border spinner-border-sm"
                       role="status"
@@ -190,7 +188,7 @@ function Register() {
                 <div className="w-100 d-flex justify-content-center align-items-center">
                   <span className="alternative">
                     Already have account?{' '}
-                    <Link to="/login" className="main-color clicked text-decoration-none">
+                    <Link to="/auth/login" className="main-color clicked text-decoration-none">
                       Log In Here
                     </Link>
                   </span>
