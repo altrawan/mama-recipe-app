@@ -15,10 +15,8 @@ function Auth({ isLogin }) {
   // Decoded Token
   let decoded = '';
   if (isLogin) {
-    decoded = jwt_decode(isLogin);
+    decoded = jwt_decode(localStorage.getItem('token'));
   }
-
-  console.log(isLogin);
 
   const logout = () => {
     localStorage.clear();
@@ -26,10 +24,8 @@ function Auth({ isLogin }) {
   };
 
   useEffect(() => {
-    if (isLogin) {
-      dispatch(getDetailUser(decoded.id, navigate));
-    }
-  }, [isLogin]);
+    dispatch(getDetailUser(decoded.id));
+  }, []);
 
   return (
     <>

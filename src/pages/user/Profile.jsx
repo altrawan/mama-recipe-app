@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { Container } from 'reactstrap';
 import Swal from 'sweetalert';
@@ -52,7 +52,6 @@ const Username = styled.p`
 
 function Profile({ me = false }) {
   const token = localStorage.getItem('token');
-  const navigate = useNavigate();
   const decoded = jwt_decode(token);
 
   const { id } = useParams();
@@ -65,7 +64,7 @@ function Profile({ me = false }) {
     document.title = `${process.env.REACT_APP_APP_NAME} - ${me ? 'My Profile' : 'Profile'}`;
 
     const userId = id || decoded.id;
-    dispatch(getDetailUser(userId, navigate));
+    dispatch(getDetailUser(userId));
   }, []);
 
   const handleClick = () => {
@@ -83,7 +82,7 @@ function Profile({ me = false }) {
     updatePhoto(formData, decoded.id)
       .then((res) => {
         Swal('Success!', res.message, 'success').then(() => {
-          dispatch(getDetailUser(decoded.id, navigate));
+          dispatch(getDetailUser(decoded.id));
         });
       })
       .catch((err) => {

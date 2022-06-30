@@ -27,7 +27,7 @@ function EditProfile() {
   useEffect(() => {
     document.title = `${process.env.REACT_APP_APP_NAME} - Edit Profile Page`;
 
-    dispatch(getDetailUser(decoded.id, navigate));
+    dispatch(getDetailUser(decoded.id));
   }, []);
 
   const onChange = (e) => {

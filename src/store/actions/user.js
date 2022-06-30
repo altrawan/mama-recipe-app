@@ -1,7 +1,7 @@
 import axios from '../../utils/axios';
 import { GET_DETAIL_USER_PENDING, GET_DETAIL_USER_SUCCESS, GET_DETAIL_USER_FAILED } from '../types';
 
-export const getDetailUser = (id, navigate) => async (dispatch) => {
+export const getDetailUser = (id) => async (dispatch) => {
   try {
     dispatch({
       type: GET_DETAIL_USER_PENDING,
@@ -16,11 +16,6 @@ export const getDetailUser = (id, navigate) => async (dispatch) => {
     });
   } catch (error) {
     if (error.response) {
-      if (parseInt(error.response.data.code, 10) === 401) {
-        localStorage.clear();
-        return navigate('/auth/login');
-      }
-
       error.message = error.response.data.error;
     }
 
