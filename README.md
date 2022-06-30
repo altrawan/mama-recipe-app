@@ -53,7 +53,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Mama Recipe is here to help you cook delicious and simple meals. We offer recipes and cooking advice for home cooks, by home cooks. Mama Recipe is a web-based recipe sharing that applicaion that allow user to share their recipe, liked, and comment. Just like social media. In this app, user could take a look into recipe including it's ingredients and video step.
+**Mama Recipe** is here to help you cook delicious and simple meals. We offer recipes and cooking advice for home cooks, by home cooks. Mama Recipe is a web-based recipe sharing that applicaion that allow user to share their recipe, liked, and comment. Just like social media. In this app, user could take a look into recipe including it's ingredients and video step.
 
 ### Built With
 This app was built with some technologies below:
@@ -162,15 +162,13 @@ REACT_APP_STAGING=[dev / prod]
     <td>Edit Profile Page</td>
     <td>Change Password Page</td>
   </tr>
-      
-  <tr>
-      <td><image src="https://lh3.googleusercontent.com/d/1aQVZm0R9bjehg5gan22Fze51j5ga0u8f" alt="Detail Video Page" width=100%/></td>
-  </tr>
-  <tr>
-      <td>Detail Video Page</td>
-  </tr>
 
 </table>
+   
+   <p align="center">
+      <img src="https://lh3.googleusercontent.com/d/1aQVZm0R9bjehg5gan22Fze51j5ga0u8f" alt="Detail Video Page" width=50% />
+   </p>
+   <p align="center">Detail Video Page</p>
       
 </p>
 
@@ -192,6 +190,8 @@ Contributions are what make the open source community such an amazing place to b
 :rocket: [`Backend Mama Recipe`](https://github.com/altrawan/food-recipe-api)
 
 :rocket: [`Frontend Mama Recipe`](https://github.com/altrawan/mama-recipe-app)
+
+:rocket: [`Web Service`](https://mama-recipe.herokuapp.com/)
 
 :rocket: [`Demo Mama Recipe`](https://bit.ly/mama-recipe-app)
 
