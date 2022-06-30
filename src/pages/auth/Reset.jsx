@@ -64,6 +64,12 @@ const Reset = () => {
           <Banner />
           <Col md="8" lg="6" className="full d-flex justify-content-center align-items-center">
             <div className="col-10 col-md-8 col-xl-6 d-flex flex-column justify-content-center align-items-center p-0">
+              <h2 className="main-color title">Reset Password?</h2>
+              <span className="secondary-color description mt-4 mb-4 text-center">
+                Please set a secure password that contains uppercase, lowercase, number, and
+                special character. This is for your own safety
+              </span>
+              <hr className="separator w-100 mb-0 mt-1" />
               <Form className="w-100 mb-3 mt-3" onSubmit={onSubmit}>
                 <FormGroup className="mb-3">
                   <Label for="password" className="mb-2 label">
