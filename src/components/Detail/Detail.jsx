@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import User from '../../assets/img/user.png';
+import Default from '../../assets/img/default.jpg';
 import saved from '../../assets/icons/bookmark.png';
 import liked from '../../assets/icons/liked.png';
 import play from '../../assets/icons/play.png';
@@ -145,49 +147,34 @@ function Detail({ recipe }) {
   return (
     <>
       <Section>
-        <Title>{recipe.data.title}</Title>
+        <Title>{recipe.title}</Title>
         <Author>
-          {recipe.data.photo ? (
-            <Profile
-              src={`${
-                process.env.REACT_APP_STAGING === 'dev'
-                  ? `${process.env.REACT_APP_DEV}uploads/user/${recipe.data.photo}`
-                  : `${process.env.REACT_APP_PROD}uploads/user/${recipe.data.photo}`
-              }`}
-              alt={recipe.data.name}
-              className="rounded-circle"
-            />
-          ) : (
-            <Profile
-              src={`${
-                process.env.REACT_APP_STAGING === 'dev'
-                  ? `${process.env.REACT_APP_DEV}uploads/user/avatar.webp`
-                  : `${process.env.REACT_APP_PROD}uploads/user/avatar.webp`
-              }`}
-              alt={recipe.data.name}
-              className="rounded-circle"
-            />
-          )}
+          <Profile
+            src={`https://drive.google.com/uc?export=view&id=${recipe.photo}`}
+            alt={recipe.name}
+            className="rounded-circle"
+            onError={(e) => {
+              e.target.src = User;
+            }}
+          />
           <Info className="h-100">
             <h6>
-              By{' '}
               <Link
-                to={`/profile/${recipe.data.user_id}`}
+                to={`/profile/${recipe.user_id}`}
                 style={{ color: '#000', textDecoration: 'none' }}>
-                {recipe.data.name}
+                {recipe.name}
               </Link>
             </h6>
-            <span title={recipe.data.date}>{moment(recipe.data.date, 'YYYYMMDD').fromNow()}</span>
+            <span title={recipe.date}>{moment(recipe.date).fromNow()}</span>
           </Info>
         </Author>
         <div className="position-relative mb-5 text-center">
           <Image
-            src={`${
-              process.env.REACT_APP_STAGING === 'dev'
-                ? `${process.env.REACT_APP_DEV}uploads/recipe/${recipe.data.image}`
-                : `${process.env.REACT_APP_PROD}uploads/recipe/${recipe.data.image}`
-            }`}
-            alt={recipe.data.title}
+            src={`https://drive.google.com/uc?export=view&id=${recipe.image}`}
+            alt={recipe.title}
+            onError={(e) => {
+              e.target.src = Default;
+            }}
           />
           <Icon>
             <Saved>
@@ -202,11 +189,11 @@ function Detail({ recipe }) {
 
       <Item>
         <Heading>Ingredients</Heading>
-        <Ingredients>{recipe.data.ingredients}</Ingredients>
+        <Ingredients>{recipe.ingredients}</Ingredients>
       </Item>
       <Item>
         <Heading>Video Step</Heading>
-        <Link to={`/recipe/video/${recipe.data.id}`}>
+        <Link to={`/recipe/video/${recipe.id}`}>
           <Video>
             <Play src={play} alt="Play" />
           </Video>

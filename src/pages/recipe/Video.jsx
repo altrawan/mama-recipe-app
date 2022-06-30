@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { Code, List } from 'react-content-loader';
 import { Container, Row } from 'reactstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getRecipeById } from '../../store/actions/recipe';
-// import { getListRecipe } from '../../store/actions/listRecipe';
+import { getDetailRecipe, getLatestRecipe } from '../../store/actions/recipe';
 
 import Navbar from '../../components/Navbar';
 import Video from '../../components/Video/Video';
-import List from '../../components/Video/List';
+import Lists from '../../components/Video/List';
 
 const Leftbar = styled.div`
   position: fixed;
@@ -25,19 +25,19 @@ const Leftbar = styled.div`
   }
 `;
 
-function DetailVideo() {
+const Videos = () => {
   const token = localStorage.getItem('token');
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const recipe = useSelector((state) => state.recipe);
-  const list = useSelector((state) => state.listRecipe);
+  const { detailRecipe } = useSelector((state) => state);
+  const { latestRecipe } = useSelector((state) => state);
 
   useEffect(() => {
-    document.title = 'Mama Recipe. - Detail Video Page';
+    document.title = `${process.env.REACT_APP_APP_NAME} - Detail Video Page`;
 
-    dispatch(getRecipeById(id));
-    // dispatch(getListRecipe(1, 3, 'DESC'));
+    dispatch(getDetailRecipe(id, navigate));
+    dispatch(getLatestRecipe(3));
   }, []);
 
   return (
@@ -47,13 +47,13 @@ function DetailVideo() {
       <Leftbar />
       <Container fluid>
         <Row>
-          {recipe.isLoading ? <div /> : <Video recipe={recipe} />}
+          {detailRecipe.isLoading ? <Code /> : <Video recipe={detailRecipe} />}
 
-          {recipe.isLoading ? <div /> : <List recipe={list} />}
+          {latestRecipe.isLoading ? <List /> : <Lists recipe={latestRecipe} />}
         </Row>
       </Container>
     </>
   );
-}
+};
 
-export default DetailVideo;
+export default Videos;

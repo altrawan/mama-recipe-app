@@ -7,7 +7,7 @@ import AuthStyles from '../../assets/styles/AuthStyles';
 import Banner from '../../components/Banner';
 import { forgot } from '../../store/actions/auth';
 
-function ForgotPassword() {
+const Forgot = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -91,6 +91,6 @@ function ForgotPassword() {
       </Container>
     </>
   );
-}
+};
 
-export default ForgotPassword;
+export default Forgot;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Row } from 'reactstrap';
@@ -50,8 +50,6 @@ const Date = styled.p`
 `;
 
 function Video({ recipe }) {
-  useEffect(() => {}, []);
-
   return (
     <main className="col-12 col-lg-8">
       <Row className="vh-100">
@@ -64,7 +62,7 @@ function Video({ recipe }) {
               allowFullScreen
             />
             <Title>{recipe.data.title}</Title>
-            <Date>{moment(recipe.data.date, 'YYYYMMDD').fromNow()}</Date>
+            <Date>{moment(recipe.data.date).fromNow()}</Date>
           </IFrame>
         </Left>
       </Row>

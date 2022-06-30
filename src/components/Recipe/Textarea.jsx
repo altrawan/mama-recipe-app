@@ -17,11 +17,12 @@ const Custom = styled.div`
   }
 `;
 
-function Textarea({ value, onChange }) {
+function Textarea({ value, id, onChange }) {
   return (
     <Custom className="p-4">
       <textarea
         className="form-control"
+        id={id}
         placeholder="Ingredients"
         style={{
           backgroundColor: 'transparent',

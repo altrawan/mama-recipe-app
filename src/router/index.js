@@ -4,20 +4,28 @@ import PrivateRoute from './privateRoute';
 import PublicRoute from './publicRoute';
 import ScrollToTop from '../utils/scrollToTop';
 
-import Home from '../pages/main/Home';
-import List from '../pages/main/List';
+// Main
+import Home from '../pages/Home';
+import NotFound from '../pages/NotFound';
+
+// Auth
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
-import ForgotPassword from '../pages/auth/ForgotPassword';
+import Forgot from '../pages/auth/Forgot';
 import Verification from '../pages/auth/Verification';
-import ResetPassword from '../pages/auth/ResetPassword';
-import Profile from '../pages/main/Profile';
-import ChangePassword from '../pages/main/ChangePassword';
-import EditProfile from '../pages/main/EditProfile';
-import Add from '../pages/main/AddRecipe';
-import Detail from '../pages/main/DetailRecipe';
-import Video from '../pages/main/DetailVideo';
-import NotFound from '../pages/main/NotFound';
+import Reset from '../pages/auth/Reset';
+
+// Recipe
+import Add from '../pages/recipe/Add';
+import Detail from '../pages/recipe/Detail';
+import Edit from '../pages/recipe/Edit';
+import List from '../pages/recipe/List';
+import Video from '../pages/recipe/Video';
+
+// User
+import Profile from '../pages/user/Profile';
+import ChangePassword from '../pages/user/ChangePassword';
+import EditProfile from '../pages/user/EditProfile';
 
 function Router() {
   return (
@@ -29,14 +37,14 @@ function Router() {
         <Route path="auth/" element={<PublicRoute />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="forgot" element={<ForgotPassword />} />
+          <Route path="forgot" element={<Forgot />} />
           <Route path="verification" element={<Verification />} />
-          <Route path="reset/:token" element={<ResetPassword />} />
+          <Route path="reset/:token" element={<Reset />} />
         </Route>
         <Route path="recipe/" element={<PrivateRoute />}>
           <Route index element={<List />} />
           <Route path="add" element={<Add />} />
-          <Route path="edit/:id" element={<Add edit />} />
+          <Route path="edit/:id" element={<Edit />} />
           <Route path=":id" element={<Detail />} />
           <Route path="video/:id" element={<Video />} />
         </Route>

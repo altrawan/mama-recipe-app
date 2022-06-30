@@ -11,7 +11,7 @@ import { getDetailUser, updatePhoto } from '../../store/actions/user';
 import User from '../../assets/img/user.png';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Profile/Button';
-// import Tabs from '../../components/Profile/Tabs';
+import Tabs from '../../components/Profile/Tabs';
 import Footer from '../../components/Footer';
 
 const Section = styled.section`
@@ -134,7 +134,7 @@ function Profile({ me = false }) {
             <Button me={me} />
           </Section>
         )}
-        {/* <Tabs me={me} profile={detailUser} /> */}
+        <Tabs me={me} profile={detailUser} />
       </Container>
       <Footer />
     </>

@@ -7,7 +7,7 @@ import AuthStyles from '../../assets/styles/AuthStyles';
 import toastr from '../../utils/toastr';
 import { verification } from '../../store/actions/auth';
 
-function ChangePassword() {
+const Verification = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -86,6 +86,6 @@ function ChangePassword() {
       </Container>
     </>
   );
-}
+};
 
-export default ChangePassword;
+export default Verification;

@@ -3,15 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import ContentLoader from 'react-content-loader';
-import swal from 'sweetalert';
-import { getAllRecipes } from '../../store/actions/recipe';
+import { getLatestRecipe } from '../store/actions/recipe';
 // Import Component
-import Navbar from '../../components/Navbar';
-import Hero from '../../components/Home/Hero';
-import Popular from '../../components/Home/Popular';
-import Latest from '../../components/Home/Latest';
-import List from '../../components/Home/List';
-import Footer from '../../components/Footer';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Home/Hero';
+import Popular from '../components/Home/Popular';
+import Latest from '../components/Home/Latest';
+import List from '../components/Home/List';
+import Footer from '../components/Footer';
 
 const RightBar = styled.div`
   position: absolute;
@@ -36,16 +35,16 @@ const RightBar = styled.div`
   }
 `;
 
-function Home() {
+const Home = () => {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const recipes = useSelector((state) => state.recipe);
+  const { latestRecipe } = useSelector((state) => state);
 
   useEffect(() => {
-    document.title = 'Mama Recipe. - Landing Page';
+    document.title = `${process.env.REACT_APP_APP_NAME} - Landing Page`;
 
-    dispatch(getAllRecipes(1, 6, 'DESC'));
+    dispatch(getLatestRecipe(6));
   }, [dispatch]);
 
   const search = (e, query) => {
@@ -61,44 +60,32 @@ function Home() {
       {/* Content */}
       <RightBar />
       <Hero search={search} />
-      {recipes.isLoading ? (
+      {latestRecipe.isLoading ? (
         <ContentLoader />
-      ) : recipes.isError ? (
-        swal({
-          title: 'Failed!',
-          text: recipes.message,
-          icon: 'warning'
-        })
+      ) : latestRecipe.isError ? (
+        <div>Error</div>
       ) : (
-        <Popular recipes={recipes} />
+        <Popular recipes={latestRecipe} />
       )}
-      {recipes.isLoading ? (
+      {latestRecipe.isLoading ? (
         <ContentLoader />
-      ) : recipes.isError ? (
-        swal({
-          title: 'Failed!',
-          text: recipes.message,
-          icon: 'warning'
-        })
+      ) : latestRecipe.isError ? (
+        <div>Error</div>
       ) : (
-        <Latest recipes={recipes} />
+        <Latest recipes={latestRecipe} />
       )}
-      {recipes.isLoading ? (
+      {latestRecipe.isLoading ? (
         <ContentLoader />
-      ) : recipes.isLoading ? (
-        swal({
-          title: 'Failed!',
-          text: recipes.message,
-          icon: 'warning'
-        })
+      ) : latestRecipe.isError ? (
+        <div>Error</div>
       ) : (
-        <List recipes={recipes} />
+        <List recipes={latestRecipe} />
       )}
 
       {/* Footer */}
       <Footer />
     </>
   );
-}
+};
 
 export default Home;

@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 import AOS from 'aos';
 import Button from './Button';
 import vector from '../../assets/icons/vector.svg';
+import Default from '../../assets/img/default.jpg';
 
 const Section = styled.section`
   height: 100vh;
@@ -166,12 +167,11 @@ function Popular({ recipes }) {
             <Square />
             <Vector src={vector} alt="Vector" />
             <PopularRecipe
-              src={`${
-                process.env.REACT_APP_STAGING === 'dev'
-                  ? `${process.env.REACT_APP_DEV}uploads/recipe/${recipe.image}`
-                  : `${process.env.REACT_APP_PROD}uploads/recipe/${recipe.image}`
-              }`}
+              src={`https://drive.google.com/uc?export=view&id=${recipe.image}`}
               alt={recipe.title}
+              onError={(e) => {
+                e.target.src = Default;
+              }}
             />
           </Col>
           <Col md="6" className="d-flex flex-column justify-content-center">

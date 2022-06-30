@@ -17,11 +17,12 @@ const Custom = styled.div`
   }
 `;
 
-function Text({ name, value, onChange }) {
+function Text({ name, id, value, onChange }) {
   return (
     <Custom>
       <Input
         type="text"
+        id={id}
         className="form-control"
         style={{
           backgroundColor: 'transparent',

@@ -21,7 +21,7 @@ export const getLatestRecipe = (limit) => async (dispatch) => {
       payload: null
     });
 
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/recipe/latest?limit=${limit}`);
+    const res = await axios.get(`recipe/latest?limit=${limit}`);
 
     dispatch({
       type: GET_LATEST_RECIPE_SUCCESS,

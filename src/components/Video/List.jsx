@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
+import Default from '../../assets/img/default.jpg';
 
 const Side = styled.div`
   margin-top: 150px;
@@ -58,30 +59,29 @@ function List({ recipe }) {
         {loading ? (
           <div>Loading</div>
         ) : (
-          recipe.data.map((e, i) => (
-            <Card className="border-0" key={i}>
-              <Link to={`/recipe/${e.id}`}>
+          recipe.data.map((item, index) => (
+            <Card className="border-0" key={index}>
+              <Link to={`/recipe/${item.id}`}>
                 <Image
-                  src={`${
-                    process.env.REACT_APP_STAGING === 'dev'
-                      ? `${process.env.REACT_APP_DEV}uploads/recipe/${e.image}`
-                      : `${process.env.REACT_APP_PROD}uploads/recipe/${e.image}`
-                  }`}
-                  alt={e.title}
+                  src={`https://drive.google.com/uc?export=view&id=${item.image}`}
+                  alt={item.title}
+                  onError={(e) => {
+                    e.target.src = Default;
+                  }}
                 />
               </Link>
 
               <CardBody>
-                <Link to={`/recipe/${e.id}`} style={{ color: '#000', textDecoration: 'none' }}>
-                  <Name>{e.title}</Name>
+                <Link to={`/recipe/${item.id}`} style={{ color: '#000', textDecoration: 'none' }}>
+                  <Name>{item.title}</Name>
                 </Link>
                 <Author>
                   <Link
-                    to={`/profile/${e.user_id}`}
+                    to={`/profile/${item.user_id}`}
                     style={{ color: '#AAA', textDecoration: 'none' }}>
-                    {e.name}{' '}
+                    {item.name}{' '}
                   </Link>{' '}
-                  - {moment(e.date, 'YYYYMMDD').fromNow()}
+                  - {moment(item.date).fromNow()}
                 </Author>
               </CardBody>
             </Card>

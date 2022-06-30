@@ -8,7 +8,7 @@ import AuthStyles from '../../assets/styles/AuthStyles';
 import toastr from '../../utils/toastr';
 import { login } from '../../store/actions/auth';
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -41,13 +41,12 @@ function Login() {
           const token = localStorage.getItem('token');
           const decoded = jwt_decode(token);
 
+          Swal('Success!', res.message, 'success');
           if (decoded.level === 0) {
             navigate('/admin/dashboard');
           } else {
             navigate('/');
           }
-
-          Swal('Success!', res.message, 'success');
         })
         .catch((err) => {
           if (err.response.data.code === 422) {
@@ -87,6 +86,7 @@ function Login() {
                     placeholder="Enter Email"
                     id="email"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
+                    value={form.email}
                     onChange={onChangeInput}
                     required
                   />
@@ -100,6 +100,7 @@ function Login() {
                     placeholder="Password"
                     id="password"
                     className="form-control pt-3 pb-3 pl-3 pr-0 input-auth"
+                    value={form.password}
                     onChange={onChangeInput}
                     required
                   />
@@ -145,6 +146,6 @@ function Login() {
       </Container>
     </>
   );
-}
+};
 
 export default Login;

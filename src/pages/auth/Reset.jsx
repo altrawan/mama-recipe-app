@@ -7,7 +7,7 @@ import { reset } from '../../store/actions/auth';
 import AuthStyles from '../../assets/styles/AuthStyles';
 import toastr from '../../utils/toastr';
 
-function ChangePassword() {
+const Reset = () => {
   const navigate = useNavigate();
   const { token } = useParams();
 
@@ -117,6 +117,6 @@ function ChangePassword() {
       </Container>
     </>
   );
-}
+};
 
-export default ChangePassword;
+export default Reset;

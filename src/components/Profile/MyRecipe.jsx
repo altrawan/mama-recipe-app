@@ -7,6 +7,7 @@ import { deleteRecipe } from '../../store/actions/recipe';
 import { useDispatch } from 'react-redux';
 import { getUserRecipes } from '../../store/actions/recipe';
 import jwt_decode from 'jwt-decode';
+import Default from '../../assets/img/default.jpg';
 
 const Image = styled.img`
   width: 270px;
@@ -17,10 +18,10 @@ const Image = styled.img`
 `;
 
 const Title = styled.p`
-  width: 150px;
   font-size: 24px;
   font-family: 'Airbnb Cereal App Medium';
-  color: var(--color-1);
+  color: var(--color-5);
+  background-color: var(--secondary-color);
   position: absolute;
   bottom: 0;
   left: 15px;
@@ -88,14 +89,13 @@ function MyRecipe({ me, myRecipe }) {
               <Card className="border-0">
                 <CardBody className="p-0">
                   <Image
-                    src={`${
-                      process.env.REACT_APP_STAGING === 'dev'
-                        ? `${process.env.REACT_APP_DEV}uploads/recipe/${item.image}`
-                        : `${process.env.REACT_APP_PROD}uploads/recipe/${item.image}`
-                    }`}
+                    src={`https://drive.google.com/uc?export=view&id=${item.image}`}
                     alt={item.title}
+                    onError={(e) => {
+                      e.target.src = Default;
+                    }}
                   />
-                  <Title>{item.title}</Title>
+                  <Title className="p-1 rounded">{item.title}</Title>
                   <Option>
                     <Link to={`/recipe/${item.id}`} className="btn-view">
                       <i className="fa-solid fa-eye" title="View Recipe" />

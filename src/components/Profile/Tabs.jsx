@@ -106,13 +106,13 @@ function Tabs({ me, profile }) {
           ))} */}
 
         {tab !== 'saved' &&
-          tab !== 'saved' &&
+          tab !== 'liked' &&
           (userRecipes.isLoading ? (
             <ContentLoader />
-          ) : userRecipes.isError ? (
-            <div>Error</div>
-          ) : (
+          ) : userRecipes.data.length ? (
             <MyRecipe me={me} myRecipe={userRecipes} />
+          ) : (
+            <h4 className="my-4 text-center">You have not created a recipe yet</h4>
           ))}
       </TabContent>
     </Menu>

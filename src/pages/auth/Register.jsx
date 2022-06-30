@@ -7,7 +7,7 @@ import AuthStyles from '../../assets/styles/AuthStyles';
 import toastr from '../../utils/toastr';
 import { register } from '../../store/actions/auth';
 
-function Register() {
+const Register = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -200,6 +200,6 @@ function Register() {
       </Container>
     </>
   );
-}
+};
 
 export default Register;

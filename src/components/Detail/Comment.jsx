@@ -1,12 +1,14 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Form, FormGroup } from 'reactstrap';
-import jwt_decode from 'jwt-decode';
+import { List } from 'react-content-loader';
+import Swal from 'sweetalert';
 import toastr from '../../utils/toastr';
 import { createComment } from '../../store/actions/comment';
 import { useDispatch } from 'react-redux';
-import { getListComment } from '../../store/actions/comment';
+import { getRecipeComments } from '../../store/actions/comment';
+import User from '../../assets/img/user.png';
 
 const Section = styled.section`
   margin: 0 auto;
@@ -74,11 +76,11 @@ const Item = styled.h3`
   margin-bottom: 20px;
 `;
 
-function Comment({ loading, comments }) {
-  const token = localStorage.getItem('token');
+function Comment({ comments }) {
+  // const token = localStorage.getItem('token');
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const input = useRef(null);
   const [comment, setComment] = useState('');
@@ -87,24 +89,22 @@ function Comment({ loading, comments }) {
     e.preventDefault();
     setIsLoading(true);
 
-    const decoded = jwt_decode(token);
     const body = {
-      user_id: decoded.id,
-      recipe_id: id,
-      comment_text: comment
+      recipeId: id,
+      commentText: comment
     };
 
     createComment(body)
       .then(() => {
         input.current.value = '';
-        dispatch(getListComment(id));
+        dispatch(getRecipeComments(id, navigate));
       })
       .catch((err) => {
-        if (err.response.status === 422) {
-          const error = err.response.data.errors;
-          error.map((e) => toastr(e));
+        if (err.response.data.code === 422) {
+          const { error } = err.response.data;
+          error.map((el) => toastr(el, 'error'));
         } else {
-          toastr(err.response.data.message);
+          Swal('Error!', err.response.data.message, 'error');
         }
       })
       .finally(() => {
@@ -132,7 +132,7 @@ function Comment({ loading, comments }) {
 
             <div className="d-flex justify-content-center">
               {isLoading ? (
-                <Button type="submit" disabled>
+                <Button disabled>
                   <span
                     className="spinner-border spinner-border-sm"
                     role="status"
@@ -148,35 +148,22 @@ function Comment({ loading, comments }) {
       </Section>
       <Detail>
         <Item>Comment</Item>
-        {loading ? (
-          <div>Loading</div>
+        {comments.isLoading ? (
+          <List />
         ) : (
-          comments.data.map((e, i) => (
-            <div className="d-flex align-items-center mb-3" key={i}>
-              {e.photo ? (
-                <Profile
-                  src={`${
-                    process.env.REACT_APP_STAGING === 'dev'
-                      ? `${process.env.REACT_APP_DEV}uploads/user/${e.photo}`
-                      : `${process.env.REACT_APP_PROD}uploads/user/${e.photo}`
-                  }`}
-                  alt={e.name}
-                  className="rounded-circle"
-                />
-              ) : (
-                <Profile
-                  src={`${
-                    process.env.REACT_APP_STAGING === 'dev'
-                      ? `${process.env.REACT_APP_DEV}uploads/user/avatar.webp`
-                      : `${process.env.REACT_APP_PROD}uploads/user/avatar.webp`
-                  }`}
-                  alt={e.name}
-                  className="rounded-circle"
-                />
-              )}
+          comments.data.map((item, index) => (
+            <div className="d-flex align-items-center mb-3" key={index}>
+              <Profile
+                src={`https://drive.google.com/uc?export=view&id=${item.photo}`}
+                alt={item.name}
+                className="rounded-circle"
+                onError={(e) => {
+                  e.target.src = User;
+                }}
+              />
               <Info className="h-100">
-                <h6>{e.name}</h6>
-                <span>{e.comment_text}</span>
+                <h6>{item.name}</h6>
+                <span>{item.comment_text}</span>
               </Info>
             </div>
           ))

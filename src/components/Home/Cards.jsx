@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Default from '../../assets/img/default.jpg';
 
 const Item = styled.div`
   display: flex;
@@ -39,8 +40,11 @@ const Card = styled.div`
 
 const CardTitle = styled.h2`
   color: var(--color-3);
-  width: 59%;
+  /* width: 59%; */
   text-transform: capitalize;
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  padding: 0 5px;
 `;
 
 const CardImage = styled.img`
@@ -73,13 +77,12 @@ function Cards({ recipes }) {
                 <div className="w-100 h-100 p-4 d-flex align-items-end">
                   <CardTitle>{item.title}</CardTitle>
                   <CardImage
-                    src={`${
-                      process.env.REACT_APP_STAGING === 'dev'
-                        ? `${process.env.REACT_APP_DEV}uploads/recipe/${item.image}`
-                        : `${process.env.REACT_APP_PROD}uploads/recipe/${item.image}`
-                    }`}
+                    src={`https://drive.google.com/uc?export=view&id=${item.image}`}
                     alt={item.title}
                     className="w-100 h-100"
+                    onError={(e) => {
+                      e.target.src = Default;
+                    }}
                   />
                 </div>
               </Card>
