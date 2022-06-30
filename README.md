@@ -120,15 +120,20 @@ REACT_APP_API_URL = [API_URL]
 
 ## Screenshoots
 <p align="center" display=flex>
-  
-   <img src="https://lh3.googleusercontent.com/d/1xc7MuKFPS9UPFPoCjTL1ZL1mVMRMNUEd" alt="Landing Page" width=50% />
-   <p align="center">Landing Page</p>
-   
 <table>
+
+  <tr>
+    <td><image src="https://lh3.googleusercontent.com/d/1UN7NI7Vu2NA01p5PoIhVZ4kSURmPzh7g" alt="Landing Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1I3TT_chSyesVo2azb1Bd1_kl0plsYO08" alt="Landing Page After Login" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Landing Page</td>
+    <td>Landing Page After Login</td>
+  </tr>
  
   <tr>
-    <td><image src="https://lh3.googleusercontent.com/d/1IK5raqmtiSmrL76VfweXMs_PhAbKMNLg" alt="Login Page" width=100%></td>
-    <td><image src="https://lh3.googleusercontent.com/d/1gCnHqxD76dkP5eOfgTDRReolDFZF2JS1" alt="Register Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/11Z2P-4cJKQkc-sEqblc3O2cPrffQ-Qwz" alt="Login Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1q-NdmAh2PnkD8Z4ax-h2Ayao6o_d1jAH" alt="Register Page" width=100%/></td>
   </tr>
    <tr>
     <td>Login Page</td>
@@ -136,36 +141,53 @@ REACT_APP_API_URL = [API_URL]
   </tr>
   
   <tr>
-    <td><image src="https://lh3.googleusercontent.com/d/1mG-d5amm4MFtRb1XENX3I6z87He3cQXm" alt="Forgot Password Page" width=100%></td>
-    <td><image src="https://lh3.googleusercontent.com/d/1U1F6VhMl2D76RSA-AOZowEZK_kNNkEeJ" alt="Reset Password Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1i0yw0ksYsIkBqdF6IlYvRmWVsMzadi5x" alt="Forgot Password Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1Eqc_cXDDHwVb_1VIfZsDVKlRFNkk8AGY" alt="Code Verification Page" width=100%/></td>
   </tr>
   <tr>
     <td>Forgot Password Page</td>
+    <td>Code Verification Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="https://lh3.googleusercontent.com/d/1NhZtMm6FZdTp9ikeBldPUvnHPziOU220" alt="Reset Password Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1M8KX4OGoGe556yGPXZslqwHcJsKE1tIJ" alt="List Recipe Page" width=100%/></td>
+  </tr>
+  <tr>
     <td>Reset Password Page</td>
+    <td>List Recipe Page</td>
   </tr>
 
   <tr>
-    <td><image src="https://lh3.googleusercontent.com/d/11rruAo3igBhfLoX9a-kY1YoDO5GeAY-b" alt="Detail Recipe Page" width=100%/></td>
-    <td><image src="https://lh3.googleusercontent.com/d/1yvJbwWdW4Q4ojXUTfT9XFO_FqOpgmwnl" alt="List Recipe Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1zhq5AQ0zta-z6fw9ZPnONXf5FJaiq9UW" alt="Detail Recipe Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1LYHTBdLikPqr62w_EKFyAUH7zj7SWvHY" alt="Detail Video Page" width=100%></td>
   </tr>
   <tr>
       <td>Detail Recipe Page</td>
-      <td>List Recipe Page</td>
+      <td>Detail Video Page</td>
   </tr>
   
   <tr>
-    <td><image src="https://lh3.googleusercontent.com/d/1bAHGnVa7vh525hVT_4lfNBDIDlYTfv4p" alt="Add Recipe Page" width=100%/></td>
-    <td><image src="https://lh3.googleusercontent.com/d/1NC3AmMHx34kNKQowNjuo0367GS5Gon3r" alt="Profile Page"' width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1oAhnZc_-DHV0v8a-GpOe-jix-wYei71f" alt="Add Recipe Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1HFnzIcS29DOdej0OpG4f_9FRHAx5mpRV" alt="Edit Recipe Page"' width=100%></td>
   </tr>
   <tr>
     <td>Add Recipe Page</td>
-    <td>Profile Page</td>
+    <td>Edit Recipe Page</td>
   </tr>
   
+  <tr>
+    <td><image src="https://lh3.googleusercontent.com/d/1v6o5zbUONfDZbvuv4b9VyygrTw_qnI3B" alt="View Another Profile Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1an5NnJynGmo90flX5SX35xbuVMStJ4EJ" alt="My Profile Page"' width=100%></td>
+  </tr>
+  <tr>
+    <td>View Another Profile Page</td>
+    <td>My Profile Page</td>
+  </tr>
 
   <tr>
-    <td><image src="https://lh3.googleusercontent.com/d/1xCwZ5wmmjA_KRbADB97cXYBfb0AN4p5f" alt="Edit Profile Page" width=100%></td> 
-    <td><image src="https://lh3.googleusercontent.com/d/1Uv93s9BC1Pu5Jr9V7PpT2coT5hReocUV" alt="Change Password Page" width=100%></td>  
+    <td><image src="https://lh3.googleusercontent.com/d/1jQ8irQ2Zic-NRgcU6Hnf8n6lLqT_1LSZ" alt="Edit Profile Page" width=100%></td> 
+    <td><image src="https://lh3.googleusercontent.com/d/1-rRfdYe7jzhNiqVi6A5BMZRmP4A8VSNK" alt="Change Password Page" width=100%></td>  
   </tr>
   <tr>
     <td>Edit Profile Page</td>
@@ -173,11 +195,6 @@ REACT_APP_API_URL = [API_URL]
   </tr>
 
 </table>
-   
-   <p align="center">
-      <img src="https://lh3.googleusercontent.com/d/1aQVZm0R9bjehg5gan22Fze51j5ga0u8f" alt="Detail Video Page" width=50% />
-   </p>
-   <p align="center">Detail Video Page</p>
       
 </p>
 
