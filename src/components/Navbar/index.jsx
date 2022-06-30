@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { Container, Navbar, NavbarBrand, NavbarToggler, Collapse } from 'reactstrap';
 import Main from './Main';
