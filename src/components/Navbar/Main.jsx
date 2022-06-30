@@ -12,13 +12,13 @@ function Main({ isLogin }) {
           Home
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink tag={Link} to="/recipe" active={location.pathname === '/recipe'}>
-          list recipe
-        </NavLink>
-      </NavItem>
       {isLogin && (
         <>
+          <NavItem>
+            <NavLink tag={Link} to="/recipe" active={location.pathname === '/recipe'}>
+              list recipe
+            </NavLink>
+          </NavItem>
           <NavItem>
             <NavLink tag={Link} to="/recipe/add" active={location.pathname === '/recipe/add'}>
               add recipe
