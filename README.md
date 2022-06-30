@@ -61,9 +61,11 @@ This app was built with some technologies below:
 * [Javascript](https://www.javascript.com/)
 * [React](https://vuejs.org/v2)
 * [Axios](https://axios-http.com/)
-* [React Redux](https://react-redux.js.org/introduction/getting-started)
+* [Redux](https://react-redux.js.org/introduction/getting-started)
 * [Bootstrap](https://getbootstrap.com/)
 * [Reactstrap](https://reactstrap.github.io/)
+* [styled-components](https://styled-components.com/)
+* [Moment.js](https://styled-components.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
