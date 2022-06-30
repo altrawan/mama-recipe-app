@@ -111,9 +111,9 @@ npm install
 ### Setup .env example
 Create .env file in your root project folder.
 ```
-REACT_APP_DEV=[BACKEND_URL_DEVELOPMENT]
-REACT_APP_PROD=[BACKEND_URL_PRODUCTION]
-REACT_APP_STAGING=[dev / prod]
+REACT_APP_APP_NAME = [APP_NAME]
+REACT_APP_NODE_ENV = [NODE_ENV]
+REACT_APP_API_URL = [API_URL]
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
