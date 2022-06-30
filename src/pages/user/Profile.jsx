@@ -96,7 +96,7 @@ function Profile({ me = false }) {
 
   return (
     <>
-      <Navbar isLogin={token} />
+      <Navbar />
       <Container fluid>
         {detailUser.isLoading ? (
           <Instagram />

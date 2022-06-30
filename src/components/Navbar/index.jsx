@@ -5,8 +5,9 @@ import Main from './Main';
 import Auth from './Auth';
 import '../../utils/navbar';
 
-function Navigation({ isLogin = false }) {
+function Navigation() {
   // Collapse isOpen State
+  const isLogin = Boolean(localStorage.getItem('token'));
   const [isOpen, setIsOpen] = useState(false);
 
   return (

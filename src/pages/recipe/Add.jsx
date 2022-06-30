@@ -44,7 +44,6 @@ const Button = styled.button`
 `;
 
 const Add = () => {
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const hiddenFileInput = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -114,7 +113,7 @@ const Add = () => {
 
   return (
     <>
-      <Navbar isLogin={token} />
+      <Navbar />
 
       <Container fluid>
         <Section>

@@ -131,7 +131,6 @@ const Button = styled.button`
 `;
 
 const List = () => {
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { listRecipe } = useSelector((state) => state);
@@ -199,7 +198,7 @@ const List = () => {
 
   return (
     <>
-      <Navbar isLogin={token} />
+      <Navbar />
       <Main>
         <form onSubmit={search}>
           <Input className="p-3 pl-4">

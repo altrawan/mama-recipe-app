@@ -36,7 +36,6 @@ const RightBar = styled.div`
 `;
 
 const Home = () => {
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { latestRecipe } = useSelector((state) => state);
@@ -55,7 +54,7 @@ const Home = () => {
   return (
     <>
       {/* Navbar */}
-      <Navbar isLogin={token} />
+      <Navbar />
 
       {/* Content */}
       <RightBar />

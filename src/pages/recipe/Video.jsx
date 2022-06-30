@@ -26,7 +26,6 @@ const Leftbar = styled.div`
 `;
 
 const Videos = () => {
-  const token = localStorage.getItem('token');
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ const Videos = () => {
 
   return (
     <>
-      <Navbar isLogin={token} />
+      <Navbar />
 
       <Leftbar />
       <Container fluid>

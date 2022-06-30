@@ -45,7 +45,6 @@ const Button = styled.button`
 `;
 
 const Edit = () => {
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -131,7 +130,7 @@ const Edit = () => {
 
   return (
     <>
-      <Navbar isLogin={token} />
+      <Navbar />
 
       <Container fluid>
         <Section>

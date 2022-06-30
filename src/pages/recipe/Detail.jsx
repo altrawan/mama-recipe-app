@@ -10,7 +10,6 @@ import Comment from '../../components/Detail/Comment';
 import Footer from '../../components/Footer';
 
 const DetailRecipe = () => {
-  const token = localStorage.getItem('token');
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ const DetailRecipe = () => {
 
   return (
     <>
-      <Navbar isLogin={token} />
+      <Navbar />
 
       <Container fluid>
         <Detail recipe={detailRecipe.data} />

@@ -18,14 +18,18 @@ function Auth({ isLogin }) {
     decoded = jwt_decode(isLogin);
   }
 
+  console.log(isLogin);
+
   const logout = () => {
     localStorage.clear();
     navigate('/auth/login');
   };
 
   useEffect(() => {
-    dispatch(getDetailUser(decoded.id, navigate));
-  }, []);
+    if (isLogin) {
+      dispatch(getDetailUser(decoded.id, navigate));
+    }
+  }, [isLogin]);
 
   return (
     <>
