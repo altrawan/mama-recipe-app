@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import ContentLoader from 'react-content-loader';
@@ -36,7 +35,6 @@ const RightBar = styled.div`
 `;
 
 const Home = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { latestRecipe } = useSelector((state) => state);
 
@@ -46,11 +44,6 @@ const Home = () => {
     dispatch(getLatestRecipe(6));
   }, [dispatch]);
 
-  const search = (e, query) => {
-    e.preventDefault();
-    return navigate(`/list?search=${query}`);
-  };
-
   return (
     <>
       {/* Navbar */}
@@ -58,7 +51,7 @@ const Home = () => {
 
       {/* Content */}
       <RightBar />
-      <Hero search={search} />
+      <Hero />
       {latestRecipe.isLoading ? (
         <ContentLoader />
       ) : latestRecipe.isError ? (

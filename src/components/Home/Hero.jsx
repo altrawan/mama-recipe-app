@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'reactstrap';
 import TypeWriter from './TypeWritterText';
@@ -56,15 +57,23 @@ const Image = styled.img`
   }
 `;
 
-function Hero({ search }) {
-  const [query, setQuery] = useState('');
+function Hero() {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const search = (e, query) => {
+    e.preventDefault();
+
+    return navigate(`/recipe?search=${query}`);
+  };
+  // const [query, setQuery] = useState('');
   return (
     <Section>
       <Container>
         <Row className="align-items-center">
           <Col lg="7" md="7">
             <TypeWriter />
-            <form onSubmit={(e) => search(e, query)}>
+            <form onSubmit={(e) => search(e, searchQuery)}>
               <Search className="p-3 pl-4">
                 <Icon>
                   <img src={icon} alt="Search" />
@@ -79,7 +88,7 @@ function Hero({ search }) {
                     boxShadow: 'none'
                   }}
                   placeholder="Search Restaurant, Food"
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </Search>
             </form>
